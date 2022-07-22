@@ -40,7 +40,7 @@ const Hero = () => {
               <motion.p
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.5 }}
-                className='px-6 py-3 rounded text-white font-bold hover:scale-105 border-2  hover:shadow-white hover:shadow-sm'
+                className='px-6 py-3 rounded text-white font-bold hover:scale-105 border-2  hover:shadow-white hover:shadow-sm mr-3'
               >
                 Client
                 <span className='mx-4'>
@@ -56,7 +56,7 @@ const Hero = () => {
               <motion.p
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.5 }}
-                className='px-6 py-3 rounded text-white font-bold hover:scale-105 border-2  hover:shadow-white hover:shadow-sm'
+                className='px-6 py-3 rounded text-white font-bold hover:scale-105 border-2  hover:shadow-white hover:shadow-sm ml-3'
               >
                 Livreur
                 <span className='mx-4'>

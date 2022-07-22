@@ -14,7 +14,7 @@ function Subtotal() {
   }, [basket])
 
   return (
-    <div className='flex h-32 w-full max-w-xl flex-col justify-between rounded border-white border-2 bg-transparent p-2 md:p-5'>
+    <div className='flex h-32 w-full max-w-xl flex-col justify-between rounded border border-gray-300 bg-gray-100 p-2 md:p-5'>
       <CurrencyFormat
         renderText={(value) => (
           <>
@@ -37,7 +37,7 @@ function Subtotal() {
         <a>
           <button
             disabled={myBasket?.length == 0}
-            className='h-8 w-full rounded-sm border-white border-2 hover:shadow-white hover:shadow-sm '
+            className='h-8 w-full rounded-sm border border-amber-500 bg-amber-400 hover:bg-amber-500'
           >
             Procéder au Paiement
           </button>

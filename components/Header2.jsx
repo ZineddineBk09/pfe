@@ -132,7 +132,7 @@ function Header({ hideSearch, hideBasket, hideOptions }) {
             objectFit='cover'
             className='rounded'
           />
-          <h2 className='flex font-semibold mx-2 hover:bg-gray-800 rounded-full p-1 uppercase text-xl'>
+          <h2 className='flex font-semibold mx-2 hover:bg-gray-800 rounded-full p-1 uppercase text-xl md:block hidden'>
             9odyani
           </h2>
         </a>
@@ -147,14 +147,14 @@ function Header({ hideSearch, hideBasket, hideOptions }) {
         >
           <input
             type='text'
-            className='w-5/6 rounded-l border-none px-2 outline-none h-6 md:h-10'
+            className='w-5/6 rounded-l border-none px-2 outline-none h-10'
             placeholder='Cherchez un produit, une marque ou une catégorie'
             value={searchTerm}
             onChange={handleChange}
           />
 
           <button
-            className='border-1 h-6 rounded-r border-black bg-amber-400 px-1 hover:bg-amber-500 md:px-2 md:h-10 lg:px-3 '
+            className='border-1 rounded-r border-black bg-amber-400 px-1 hover:bg-amber-500 md:px-2 h-10 lg:px-3 '
             type='submit'
           >
             <SearchOutlinedIcon />
@@ -220,6 +220,19 @@ function Header({ hideSearch, hideBasket, hideOptions }) {
           {/* Notifications */}
           {showOptions && (
             <ul className='fixed bg-white text-slate-700 rounded top-12 w-fit border border-slate-600'>
+              <li className='flex justify-between items-center hover:bg-gray-100 '>
+                <Link href='/checkout' passHref>
+                  <a className='capitalize text-sm p-3'>
+                    <span className='mr-2'>
+                      <ShoppingCartIcon />
+                    </span>
+                    <span>Panier</span>
+                    <span className='px-1 py-0.5 text-right bg-amber-400 font-bold rounded-full ml-8 mx-auto'>
+                      {localBasket?.length || 0}
+                    </span>
+                  </a>
+                </Link>
+              </li>
               <li className='flex justify-between items-center hover:bg-gray-100 '>
                 <Link
                   href={user ? '/client/notifications' : '/client/auth/signin'}
