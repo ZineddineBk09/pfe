@@ -6,10 +6,6 @@ const ProductsCategories = dynamic(() =>
   import('../../components/ProductsCategories')
 )
 const ImagesSlider = dynamic(() => import('../../components/ImagesSlider'))
-//import Footer from '../../components/Footer'
-//import Header from '../../components/Header'
-//import ProductsCategories from '../../components/ProductsCategories'
-//import ImagesSlider from '../../components/ImagesSlider'
 
 export default function Home({}) {
   const [categories, setCategories] = useState([])
@@ -26,8 +22,8 @@ export default function Home({}) {
   }, [])
 
   return (
-    <div className='relative flex min-h-screen flex-col bg-gray-200'>
-      <Header hideSearch={true} />
+    <div className='relative flex flex-col bg-gray-100 bg-no-repeat min-h-screen w-screen object-cover overflow-y-auto overflow-x-hidden'>
+      <Header />
       <ImagesSlider />
       <ProductsCategories categories={categories} />
       <Footer />

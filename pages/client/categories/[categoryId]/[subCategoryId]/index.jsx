@@ -29,7 +29,6 @@ const CategoryId = () => {
       let category = {}
       let subCategory = {}
 
-     
       try {
         const response1 = await fetch(`/api/categories/categoryById`, {
           method: 'POST',
@@ -66,9 +65,8 @@ const CategoryId = () => {
     fetchCategoriesAndProducts()
   }, [])
 
-
   return (
-    <motion.div exit={{ opacity: 0 }} initial='initial' animate='animate'>
+    <motion.div exit={{ opacity: 0 }} initial='initial' animate='animate' className='bg-black'>
       <Header />
       <CategoriesFilter categories={categories} />
       {products.length == 0 && <ImagesSlider />}

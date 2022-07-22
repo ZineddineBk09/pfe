@@ -25,7 +25,7 @@ const CategoriesFilter = ({ categories }) => {
 
   return (
     <div className='hidden lg:block mb-12'>
-      <div className='transition duration-500 fixed top-16 z-10 flex h-10 w-full items-center justify-around bg-gray-200 text-sm shadow-xl '>
+      <div className='transition duration-500 z-10 flex h-10 w-full items-center justify-around bg-transparent text-white font-semibold text-sm shadow-xl border-y-2'>
         {myCategories?.map((cat, index) =>
           cat.key == 'all' ? (
             <div

@@ -104,20 +104,9 @@ function Header({ hideSearch, hideBasket, hideOptions }) {
 
   return (
     <nav
-      className='fixed top-0 left-0 right-0 flex justify-between h-14 w-full items-center bg-slate-900 text-white lg:h-16 z-30 shadow-md shadow-amber-400'
+      className='top-0 left-0 right-0 flex justify-between h-14 w-full items-center bg-transparent text-black lg:h-16 z-30  '
       onClick={() => setSuggestions([])}
     >
-      {/* <button
-        onClick={() => setShowSidebar(!showSidebar)}
-        className='lg:hidden ml-2 md:mx-4 text-amber-500 hover:bg-gray-800 hover:rounded-full p-1 md:scale-125 z-20 cursor-pointer '
-      >
-        <p className='font-bold text-2xl hover:text-3xl'>
-          <MenuIcon />
-        </p>
-      </button>
-      {showSidebar && (
-        <Sidebar showSidebar={showSidebar} hideFilters={hideSearch} />
-      )} */}
       {/* Logo and title */}
       {/* check if the window url contains "client" */}
 
@@ -132,9 +121,9 @@ function Header({ hideSearch, hideBasket, hideOptions }) {
             objectFit='cover'
             className='rounded'
           />
-          <h2 className='flex font-semibold mx-2 hover:bg-gray-800 rounded-full p-1 uppercase text-xl'>
+          {/* <h2 className='hidden md:block  font-semibold mx-2 hover:bg-gray-800 rounded-full p-1 uppercase text-xl'>
             9odyani
-          </h2>
+          </h2> */}
         </a>
       </Link>
 
@@ -147,14 +136,14 @@ function Header({ hideSearch, hideBasket, hideOptions }) {
         >
           <input
             type='text'
-            className='w-5/6 rounded-l border-none px-2 outline-none h-6 md:h-10'
+            className='w-5/6 rounded-l px-2 outline-none h-10 text-black font-bold border-2 border-black bg-transparent'
             placeholder='Cherchez un produit, une marque ou une catégorie'
             value={searchTerm}
             onChange={handleChange}
           />
 
           <button
-            className='border-1 h-6 rounded-r border-black bg-amber-400 px-1 hover:bg-amber-500 md:px-2 md:h-10 lg:px-3 '
+            className='border-1 rounded-r px-1  md:px-2 h-10 lg:px-3 text-black font-bold  border-2  hover:shadow-black hover:shadow-sm border-black '
             type='submit'
           >
             <SearchOutlinedIcon />
@@ -171,7 +160,7 @@ function Header({ hideSearch, hideBasket, hideOptions }) {
             {suggestions.map(({ id, name, img }) => (
               <li key={id}>
                 <Link href={`/client/products/${id}`} passHref>
-                  <a className='flex justify-between items-center px-2 py-1 hover:bg-gray-100 cursor-pointer bg-white'>
+                  <a className='flex justify-between items-center px-2 py-1 hover:bg-gray-100 cursor-pointer bg-black'>
                     {/* Avoid long products name by truncating them to max length = 100 */}
                     <p className='text-gray-600 mr-4'>{truncate(name, 70)}</p>
                     <Image src={img} alt={name} height={40} width={35} />
@@ -188,7 +177,7 @@ function Header({ hideSearch, hideBasket, hideOptions }) {
         <div className='relative ml-auto'>
           <div className='flex items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg group hover:text-amber-500 '>
             {user ? (
-              <p className='text-white'>
+              <p className='text-black'>
                 Bonjour,
                 <span className='font-semibold'> {user.name}</span>
               </p>
@@ -197,7 +186,7 @@ function Header({ hideSearch, hideBasket, hideOptions }) {
                 <Link href='/client/auth/signin' passHref>
                   <a
                     className={
-                      'text-md border-blue rounded border bg-amber-500 py-2 px-4 text-white hover:bg-amber-400 focus:border-black focus:outline-none'
+                      'border-blue rounded  text-black font-bold border-2 bg-transparent py-2 px-4  hover:shadow-black hover:shadow-sm hover:scale-105 focus:outline-none text-xs md:text-sm lg:text-base border-black '
                     }
                   >
                     S&apos;identifier
@@ -206,7 +195,7 @@ function Header({ hideSearch, hideBasket, hideOptions }) {
               </div>
             )}
             <button
-              className='text-white text-xs ml-2 p-1 rounded-full hover:bg-gray-800 '
+              className='text-black text-xs ml-2 p-1 rounded-full hover:bg-gray-800 '
               onClick={() => setShowOptions(!showOptions)}
             >
               {showOptions ? (
@@ -219,7 +208,7 @@ function Header({ hideSearch, hideBasket, hideOptions }) {
 
           {/* Notifications */}
           {showOptions && (
-            <ul className='fixed bg-white text-slate-700 rounded top-12 w-fit border border-slate-600'>
+            <ul className='fixed bg-black text-slate-700 rounded top-12 w-fit border border-slate-600'>
               <li className='flex justify-between items-center hover:bg-gray-100 '>
                 <Link
                   href={user ? '/client/notifications' : '/client/auth/signin'}

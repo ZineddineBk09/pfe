@@ -25,13 +25,16 @@ const CategoryId = ({ products, categories }) => {
 
   console.log('PRODUCTS : ', products)
   return (
-    <motion.div exit={{ opacity: 0 }} initial='initial' animate='animate'>
-      <div className='min-h-screen bg-gray-200 p-1'>
-        <Header />
-        <CategoriesFilter categories={categories} />
-        {products && <Body products={products} />}
-        <Footer />
-      </div>
+    <motion.div
+      exit={{ opacity: 0 }}
+      initial='initial'
+      animate='animate'
+      className='bg-black'
+    >
+      <Header />
+      <CategoriesFilter categories={categories} />
+      {products && <Body products={products} />}
+      <Footer />
     </motion.div>
   )
 }

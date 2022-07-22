@@ -71,7 +71,12 @@ function Body({ products }) {
   }
 
   return (
-    <motion.div exit={{ opacity: 0 }} initial='initial' animate='animate'>
+    <motion.div
+      exit={{ opacity: 0 }}
+      initial='initial'
+      animate='animate'
+      className='p-5'
+    >
       {/*Images Slider*/}
       <ImagesSlider />
 
@@ -93,7 +98,7 @@ function Body({ products }) {
       >
         <motion.div
           variants={stagger}
-          className='mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-5 transition ease-in-out duration-500'
+          className='mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 transition ease-in-out duration-500'
         >
           {/* <Search/> */}
           {myProducts.map((product) => {

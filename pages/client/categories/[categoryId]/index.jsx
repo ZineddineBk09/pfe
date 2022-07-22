@@ -10,20 +10,21 @@ const ProductsCategories = dynamic(() =>
 const ImagesSlider = dynamic(() =>
   import('../../../../components/ImagesSlider')
 )
-//import CategoriesFilter from '../../../../components/CategoriesFilter'
-//import Header from '../../../../components/Header'
-//import Footer from '../../../../components/Footer'
-//import ProductsCategories from '../../../../components/ProductsCategories'
-//import ImagesSlider from '../../../../components/ImagesSlider'
+
 import { motion } from 'framer-motion'
 import dynamic from 'next/dynamic'
 
 const CategoryId = ({ products, categories }) => {
   return (
-    <motion.div exit={{ opacity: 0 }} initial='initial' animate='animate'>
+    <motion.div
+      exit={{ opacity: 0 }}
+      initial='initial'
+      animate='animate'
+      className=' bg-black '
+    >
       <Header />
-      <ImagesSlider />
       <CategoriesFilter categories={categories} />
+      <ImagesSlider />
       <ProductsCategories categories={categories} />
       <Footer />
     </motion.div>
@@ -31,26 +32,6 @@ const CategoryId = ({ products, categories }) => {
 }
 
 export default CategoryId
-
-//export async function getStaticPaths() {
-//  const response = await fetch(
-//    `https://zino-products-api.herokuapp.com/categories`
-//  )
-//  const data = await response.json()
-//  const paths = data.map((category) => {
-//    return {
-//      params: {
-//        categoryId: category.key,
-//      },
-//    }
-//  })
-//
-//  return {
-//    paths,
-//    fallback: false,
-//  }
-//}
-
 //getting URL params
 export async function getServerSideProps(context) {
   const { params, req } = context

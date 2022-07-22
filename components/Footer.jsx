@@ -10,7 +10,7 @@ import InstagramIcon from '@mui/icons-material/Instagram'
 
 const Footer = () => {
   return (
-    <div className='bg-slate-900 min-h-96 mt-10 min-w-screen '>
+    <div className='bg-slate-900 min-h-96 min-w-screen '>
       <footer className='px-4 divide-y dark:bg-coolGray-800 text-gray-200'>
         <div className='container flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0'>
           <div className='lg:w-1/3'>

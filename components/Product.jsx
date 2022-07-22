@@ -68,7 +68,7 @@ function Product({ product }) {
 
   return (
     <div
-      className='flex rounded bg-white p-5 shadow-xl  md:flex-col md:justify-evenly h-full'
+      className='flex rounded bg-white p-2 md:p-5 shadow-xl  md:flex-col md:justify-evenly h-full'
       onMouseEnter={(e) => {
         !showQuantity && setShowButton(true)
       }}
@@ -89,7 +89,7 @@ function Product({ product }) {
               transition={{ delay: 0.5 }}
               src={img}
               alt=''
-              className='mr-2 h-80 object-contain hover:cursor-pointer'
+              className='mr-2 h-80 object-contain hover:cursor-pointer '
             />
           </a>
         </Link>

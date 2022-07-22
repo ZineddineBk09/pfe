@@ -8,6 +8,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import {useRouter} from 'next/router'
 import {motion} from 'framer-motion'
 import dynamic from 'next/dynamic'
+import Footer from '../../components/Footer'
 
 const Checkout = () => {
   const [myBasket, setMyBasket] = useState([])
@@ -24,7 +25,7 @@ const Checkout = () => {
       exit={{ opacity: 0 }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className='flex flex-col'
+      className='flex flex-col bg-black text-white'
     >
       <Header hideSearch={true} />
       <button
@@ -33,17 +34,18 @@ const Checkout = () => {
       >
         <ArrowBackIcon />
       </button>
-      <div className='flex items-center justify-between mt-14 lg:mt-16 p-5 text-slate-900 sm:flex-row'>
+      <div className='flex items-center justify-between mt-14 lg:mt-16 p-5  sm:flex-row'>
         {/* Shoping cart */}
         <div className='m-3 flex h-32 w-3/5 flex-col justify-between'>
           <h1 className='text-xl font-semibold md:text-3xl ml-8'>Panier</h1>
-          <div className='border-b border-gray-300'></div>
+          <div className='border-b-2 border-white'></div>
         </div>
         <Subtotal />
       </div>
       {myBasket?.map((product) => (
         <CheckoutProduct key={product.id} product={product} />
       ))}
+      <Footer />
     </motion.div>
   )
 }

@@ -15,7 +15,7 @@ export default function Home() {
     fetchCategories()
   }, [])
   return (
-    <>
+    <div className="relative bg-bg-index max-h-screen w-screen object-cover overflow-x-hidden">
       <Head>
         <title>9odyani</title>
         <link rel='shortcut icon' href='/images/Logo.jpg' />
@@ -23,6 +23,6 @@ export default function Home() {
       <Layout>
         <Hero />
       </Layout>
-    </>
+    </div>
   )
 }

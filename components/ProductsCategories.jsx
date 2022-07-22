@@ -7,6 +7,7 @@ const ProductsCategories = ({ categories }) => {
 
   useEffect(() => {
     setMyCategories(categories)
+    console.log('CATEGORIES : ', categories)
   }, [categories])
 
   const easing = [0.6, -0.05, 0.01, 1]
@@ -36,47 +37,31 @@ const ProductsCategories = ({ categories }) => {
     <motion.div exit={{ opacity: 0 }} initial='initial' animate='animate'>
       <motion.div
         variants={stagger}
-        className={`mt-2 grid grid-cols-1 gap-4 p-4 md:grid-cols-2 lg:grid-cols-4`}
+        className={`my-4 grid grid-cols-1 gap-4 p-2 md:grid-cols-2 lg:grid-cols-4`}
       >
         {myCategories.map((cat) => (
           <motion.div
             variants={fadeInUP}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.5 }}
-            className='flex rounded bg-white p-5 shadow-xl transition duration-300 hover:scale-95 md:flex-col md:justify-evenly'
+            className='p-2 h-40 flex flex-col items-center rounded shadow-xl transition duration-300 hover:scale-95 md:flex-col md:justify-evenly text-white font-bold  hover:shadow-white hover:shadow-sm '
+            style={{
+              backgroundImage: `url(${cat.img})`,
+              objectFit: 'contain',
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat',
+            }}
             key={cat.key}
           >
-            <p className='font-medium text-nxl text-center capitalize'>
+            <p className=' font-bold text-xl  text-center capitalize'>
               {cat.value}
             </p>
 
-            {cat.category == 'all' ? (
-              <Link href={`/client/pages/page_1`} passHref>
-                <a>
-                  <motion.img
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.5 }}
-                    src={cat.img}
-                    alt=''
-                    className='mr-2 max-h-80 object-contain hover:cursor-pointer'
-                  />
-                </a>
-              </Link>
-            ) : (
-              <Link href={`/client/categories${cat.url}`} passHref>
-                <a>
-                  <motion.img
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.5 }}
-                    src={cat.img}
-                    alt=''
-                    className='mr-2 max-h-80 object-contain hover:cursor-pointer'
-                  />
-                </a>
-              </Link>
-            )}
+            <Link href={`/client/categories${cat.url}`} passHref>
+              <a className='flex items-center justify-center text-black font-black text-sm uppercase h-14 w-28 bg-amber-500'>
+                Shop now
+              </a>
+            </Link>
           </motion.div>
         ))}
       </motion.div>

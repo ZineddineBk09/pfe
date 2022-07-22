@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
-import HeroImg from '../../public/images/Hero_img.jpg'
+import HeroImg from '../../public/images/Hero_img2.png'
 import { motion } from 'framer-motion'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
@@ -22,55 +22,52 @@ const Hero = () => {
   }, [status, session])
 
   return (
-    <div className='max-w-screen-xl mt-22 px-8 xl:px-10 mx-auto' id='about'>
-      <div className='grid grid-flow-row sm:grid-flow-col grid-rows-2 md:grid-rows-1 sm:grid-cols-2 gap-8 py-6 sm:py-20 '>
-        <div className=' flex flex-col justify-center items-start row-start-2 sm:row-start-1'>
-          <h1 className='text-3xl lg:text-4xl xl:text-5xl font-medium text-black-600 leading-normal'>
-            Vous souhaitez que vos achats soient faciles et que la livraison
-            soit rapide ?
-          </h1>
-          <p className='text-black-500 mt-4 mb-6'>
-            avec <strong>9odyani</strong>, nous vous garantissons les meilleurs
-            prix, vos achats seront faciles et la livraison rapide.
-          </p>
-          {/* ---Client and rider buttons */}
-          <div className='mt-8 flex items-center justify-evenly w-full '>
-            <Link href='/client' passHref>
-              <a>
-                <motion.p
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.5 }}
-                  className='px-6 py-3 rounded bg-amber-400 text-slate-900 font-bold hover:bg-amber-500 '
-                >
-                  Client
-                  <span className='mx-4'>
-                    <AddShoppingCartIcon />
-                  </span>
-                </motion.p>
-              </a>
-            </Link>
-            
-            {/* we check if the rider is authenticated to see if we direct him to the authentication page or directly to his profile */}
-            <Link
-              href={riderSession ? '/rider' : '/rider/auth/signin'}
-              passHref
-            >
-              <a>
-                <motion.p
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.5 }}
-                  className='rounded bg-amber-400 px-6 py-3 text-slate-900 font-bold hover:bg-amber-500 '
-                >
-                  livreur
-                  <span className='mx-4'>
-                    <LocalShippingIcon />
-                  </span>
-                </motion.p>
-              </a>
-            </Link>
-          </div>
+    <div
+      className='  max-w-screen-xl mt-40 px-8 xl:px-10 mx-auto flex flex-col h-screen'
+      id='about'
+    >
+      <div className=' w-2/5 mx-auto flex flex-col justify-center items-center row-start-2 sm:row-start-1 text-white'>
+        <h1 className='font-dm font-black text-3xl lg:text-4xl xl:text-5xl text-black-600 leading-normal '>
+          Facile & Rapide
+        </h1>
+        <p className='font-bold text-black-500 mt-16 mb-16'>
+          Garantissons les meilleurs prix.
+        </p>
+        {/* ---Client and rider buttons */}
+        <div className=' mt-16 flex items-center justify-evenly w-full '>
+          <Link href='/client' passHref>
+            <a>
+              <motion.p
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.5 }}
+                className='px-6 py-3 rounded text-white font-bold hover:scale-105 border-2  hover:shadow-white hover:shadow-sm'
+              >
+                Client
+                <span className='mx-4'>
+                  <AddShoppingCartIcon />
+                </span>
+              </motion.p>
+            </a>
+          </Link>
+
+          {/* we check if the rider is authenticated to see if we direct him to the authentication page or directly to his profile */}
+          <Link href={riderSession ? '/rider' : '/rider/auth/signin'} passHref>
+            <a>
+              <motion.p
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.5 }}
+                className='px-6 py-3 rounded text-white font-bold hover:scale-105 border-2  hover:shadow-white hover:shadow-sm'
+              >
+                livreur
+                <span className='mx-4'>
+                  <LocalShippingIcon />
+                </span>
+              </motion.p>
+            </a>
+          </Link>
         </div>
-        <div className='flex w-full'>
+      </div>
+      {/* <div className='flex w-full'>
           <div className='h-full w-full'>
             <Image
               src={HeroImg}
@@ -82,8 +79,7 @@ const Hero = () => {
               className='rounded'
             />
           </div>
-        </div>
-      </div>
+        </div> */}
     </div>
   )
 }
