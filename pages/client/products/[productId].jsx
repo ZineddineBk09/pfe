@@ -1,6 +1,6 @@
 import React from 'react'
 const ProductInfo = dynamic(() => import('../../../components/ProductInfo'))
-const Header = dynamic(() => import('../../../components/Header'))
+const Header2 = dynamic(() => import('../../../components/Header2'))
 const Footer = dynamic(() => import('../../../components/Footer'))
 import { App, Credentials } from 'realm-web'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
@@ -18,7 +18,7 @@ const ProductId = ({ product }) => {
       animate={{ opacity: 1 }}
     >
       <div className='relative flex min-h-screen flex-col bg-gray-100 '>
-        <Header />
+        <Header2 />
         <button
           className='text-xl font-semibold md:text-3xl mr-2 px-2 hover:bg-gray-200 rounded-full fixed top-20'
           onClick={() => router.back()}

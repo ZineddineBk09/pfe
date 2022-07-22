@@ -58,7 +58,7 @@ const Hero = () => {
                 whileTap={{ scale: 0.5 }}
                 className='px-6 py-3 rounded text-white font-bold hover:scale-105 border-2  hover:shadow-white hover:shadow-sm'
               >
-                livreur
+                Livreur
                 <span className='mx-4'>
                   <LocalShippingIcon />
                 </span>

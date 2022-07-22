@@ -4,7 +4,7 @@ import Link from 'next/link'
 const NotificationsPage = dynamic(() =>
   import('../../components/client/NotificationsPage')
 )
-const Header = dynamic(() => import('../../components/Header'))
+const Header2 = dynamic(() => import('../../components/Header2'))
 import { useStateValue } from '../../React-Context-Api/context'
 import { getCookie } from '../../lib/useCookie'
 import dynamic from 'next/dynamic'
@@ -44,7 +44,7 @@ const Notifications = () => {
   if (user.provider == 'client-provider') {
     return (
       <div>
-        <Header hideSearch={true} />
+        <Header2 hideSearch={true} />
         <NotificationsPage notifications={notifications} />
       </div>
     )

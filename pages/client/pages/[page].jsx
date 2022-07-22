@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 const Body = dynamic(() => import('../../../components/HomeBody'))
-const Header = dynamic(() => import('../../../components/Header'))
+const Header2 = dynamic(() => import('../../../components/Header2'))
 const Footer = dynamic(() => import('../../../components/Footer'))
 const CategoriesFilter = dynamic(() =>
   import('../../../components/CategoriesFilter')
@@ -30,7 +30,7 @@ const Page = ({ products, currentPage, pages }) => {
       animate='animate'
       className='relative flex min-h-screen flex-col bg-gray-200'
     >
-      <Header />
+      <Header2 />
       <CategoriesFilter categories={categories} />
       <Body products={products} />
       <Pagination

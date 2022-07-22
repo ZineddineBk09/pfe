@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-const Header = dynamic(() => import('../../components/Header'))
+const Header2 = dynamic(() => import('../../components/Header2'))
 const Subtotal = dynamic(() => import('../../components/Subtotal'))
 const CheckoutProduct = dynamic(() => import('../../components/CheckoutProduct'))
 import { getCookie } from '../../lib/useCookie'
@@ -27,7 +27,7 @@ const Checkout = () => {
       animate={{ opacity: 1 }}
       className='flex flex-col bg-black text-white'
     >
-      <Header hideSearch={true} />
+      <Header2 hideSearch={true} />
       <button
         className='text-xl font-semibold md:text-3xl mr-2 px-2 hover:bg-gray-200 rounded-full fixed top-20'
         onClick={() => router.back()}

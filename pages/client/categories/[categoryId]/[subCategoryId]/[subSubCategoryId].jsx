@@ -1,15 +1,11 @@
 import React, { useEffect } from 'react'
 const Body = dynamic(() => import('../../../../../components/HomeBody'))
-const CategoriesFilter = dynamic(() =>
-  import('../../../../../components/CategoriesFilter')
+const CategoriesFilter2 = dynamic(() =>
+  import('../../../../../components/CategoriesFilter2')
 )
-const Header = dynamic(() => import('../../../../../components/Header'))
+const Header2 = dynamic(() => import('../../../../../components/Header2'))
 const Footer = dynamic(() => import('../../../../../components/Footer'))
 
-//import CategoriesFilter from '../../../../../components/CategoriesFilter'
-//import Header from '../../../../../components/Header'
-//import Footer from '../../../../../components/Footer'
-//import Body from '../../../../../components/HomeBody'
 
 import { motion } from 'framer-motion'
 import { unfilterProducts } from '../../../../../React-Context-Api/Actions/productsActions'
@@ -29,10 +25,9 @@ const CategoryId = ({ products, categories }) => {
       exit={{ opacity: 0 }}
       initial='initial'
       animate='animate'
-      className='bg-black'
     >
-      <Header />
-      <CategoriesFilter categories={categories} />
+      <Header2 />
+      <CategoriesFilter2 categories={categories} />
       {products && <Body products={products} />}
       <Footer />
     </motion.div>

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 const Footer = dynamic(() => import('../components/Footer'))
-const Header = dynamic(() => import('../components/Header'))
+const Header2 = dynamic(() => import('../components/Header2'))
 import { useRouter } from 'next/router'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import dynamic from 'next/dynamic'
@@ -52,7 +52,7 @@ const PolitiqueConf = () => {
   return (
     <div className='flex flex-col overflow-x-hidden bg-gray-100'>
       <div className='w-screen max-h-fit py-24 px-4 '>
-        <Header hideSearch={true} hideBasket={true} hideOptions={true} />
+        <Header2 hideSearch={true} hideBasket={true} hideOptions={true} />
         <button
           className='text-xl font-semibold md:text-3xl mr-2 px-2 hover:bg-gray-200 rounded-full fixed top-20'
           onClick={() => router.back()}

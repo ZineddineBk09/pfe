@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 const Footer = dynamic(() => import('../../components/Footer'))
-const Header = dynamic(() => import('../../components/Header'))
+const Header2 = dynamic(() => import('../../components/Header2'))
 const OrdersPage = dynamic(() => import('../../components/client/OrdersPage'))
 import { getCookie } from '../../lib/useCookie'
 import { useStateValue } from '../../React-Context-Api/context'
@@ -54,7 +54,7 @@ const Orders = () => {
   if (user.provider == 'client-provider') {
     return (
       <div>
-        <Header hideSearch={true} />
+        <Header2 hideSearch={true} />
         <OrdersPage orders={orders} />
         <Footer />
       </div>

@@ -95,7 +95,7 @@ function Product({ product }) {
         </Link>
       </motion.div>
       <div className='flex flex-col transition ease-in-out duration-500'>
-        <p>{name}</p>
+        <p className='uppercase'>{name}</p>
         <div className='flex items-center'>
           <Rating
             name='read-only'
@@ -108,7 +108,7 @@ function Product({ product }) {
         {parseInt(promotion?.split('%')[0]) <= 0 ? (
           <CurrencyFormat
             renderText={(value) => (
-              <span className='text-gray-700 mt-2'>{value + ' '}DA</span>
+              <span className='text-gray-700 mt-2 font-bold'>{value + ' '}DA</span>
             )}
             decimalScale={2}
             value={price.split('-')[0]}

@@ -17,7 +17,7 @@ import { signOut } from 'next-auth/react'
 import Image from 'next/image'
 import Logo from '../public/images/Logo.jpg'
 
-function Header({ hideSearch, hideBasket, hideOptions,transparent }) {
+function Header({ hideSearch, hideBasket, hideOptions }) {
   const [suggestions, setSuggestions] = useState([])
   const [{ basket, client }, dispatch] = [...useStateValue()] || []
   const [searchTerm, setSearchTerm] = useState('')
@@ -104,11 +104,20 @@ function Header({ hideSearch, hideBasket, hideOptions,transparent }) {
 
   return (
     <nav
-      className={`top-0 left-0 right-0 flex justify-between h-14 w-full items-center bg-transparent text-white lg:h-16 z-30 ${
-        !transparent && 'bg-slate-900'
-      }`}
+      className='fixed top-0 left-0 right-0 flex justify-between h-14 w-full items-center bg-slate-900 text-white lg:h-16 z-30 shadow-md shadow-amber-400'
       onClick={() => setSuggestions([])}
     >
+      {/* <button
+        onClick={() => setShowSidebar(!showSidebar)}
+        className='lg:hidden ml-2 md:mx-4 text-amber-500 hover:bg-gray-800 hover:rounded-full p-1 md:scale-125 z-20 cursor-pointer '
+      >
+        <p className='font-bold text-2xl hover:text-3xl'>
+          <MenuIcon />
+        </p>
+      </button>
+      {showSidebar && (
+        <Sidebar showSidebar={showSidebar} hideFilters={hideSearch} />
+      )} */}
       {/* Logo and title */}
       {/* check if the window url contains "client" */}
 
@@ -123,9 +132,9 @@ function Header({ hideSearch, hideBasket, hideOptions,transparent }) {
             objectFit='cover'
             className='rounded'
           />
-          {/* <h2 className='hidden md:block  font-semibold mx-2 hover:bg-gray-800 rounded-full p-1 uppercase text-xl'>
+          <h2 className='flex font-semibold mx-2 hover:bg-gray-800 rounded-full p-1 uppercase text-xl'>
             9odyani
-          </h2> */}
+          </h2>
         </a>
       </Link>
 
@@ -138,14 +147,14 @@ function Header({ hideSearch, hideBasket, hideOptions,transparent }) {
         >
           <input
             type='text'
-            className='w-5/6 rounded-l px-2 outline-none h-10 text-white font-bold border-2 border-white bg-transparent'
+            className='w-5/6 rounded-l border-none px-2 outline-none h-6 md:h-10'
             placeholder='Cherchez un produit, une marque ou une catégorie'
             value={searchTerm}
             onChange={handleChange}
           />
 
           <button
-            className='border-1 rounded-r px-1  md:px-2 h-10 lg:px-3 text-white font-bold  border-2  hover:shadow-white hover:shadow-sm border-white '
+            className='border-1 h-6 rounded-r border-black bg-amber-400 px-1 hover:bg-amber-500 md:px-2 md:h-10 lg:px-3 '
             type='submit'
           >
             <SearchOutlinedIcon />
@@ -188,7 +197,7 @@ function Header({ hideSearch, hideBasket, hideOptions,transparent }) {
                 <Link href='/client/auth/signin' passHref>
                   <a
                     className={
-                      'border-blue rounded  text-white font-bold border-2 bg-transparent py-2 px-4  hover:shadow-white hover:shadow-sm hover:scale-105 focus:outline-none text-xs md:text-sm lg:text-base border-white '
+                      'text-md border-blue rounded border bg-amber-500 py-2 px-4 text-white hover:bg-amber-400 focus:border-black focus:outline-none'
                     }
                   >
                     S&apos;identifier

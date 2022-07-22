@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
-import Header from '../../Header'
+import Header2 from '../../Header2'
 
 export default function Register() {
   const router = useRouter()
@@ -48,7 +48,7 @@ export default function Register() {
 
   return (
     <div className='flex mt-10 bg-slate-900/20 h-screen'>
-      <Header hideSearch={true} hideBasket={true} hideOptions={true} />
+      <Header2 hideSearch={true} hideBasket={true} hideOptions={true} />
       <div className='mt-16 border-slate-700 m-auto w-full max-w-md rounded-lg border bg-white px-1'>
         <div className='text-primary m-6'>
           <div className='mt-3 flex items-center justify-center'>

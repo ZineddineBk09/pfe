@@ -44,7 +44,7 @@ const ProductsCategories = ({ categories }) => {
             variants={fadeInUP}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.5 }}
-            className='p-2 h-40 flex flex-col items-center rounded shadow-xl transition duration-300 hover:scale-95 md:flex-col md:justify-evenly text-white font-bold  hover:shadow-white hover:shadow-sm '
+            className=' h-40  rounded shadow-xl transition duration-300 hover:scale-95 md:flex-col md:justify-evenly text-white font-bold  hover:shadow-white hover:shadow-sm '
             style={{
               backgroundImage: `url(${cat.img})`,
               objectFit: 'contain',
@@ -53,15 +53,17 @@ const ProductsCategories = ({ categories }) => {
             }}
             key={cat.key}
           >
-            <p className=' font-bold text-xl  text-center capitalize'>
-              {cat.value}
-            </p>
+            <div className='flex flex-col items-center p-2 h-full w-full bg-black bg-opacity-25'>
+              <p className=' font-bold text-xl  text-center capitalize'>
+                {cat.value}
+              </p>
 
-            <Link href={`/client/categories${cat.url}`} passHref>
-              <a className='flex items-center justify-center text-black font-black text-sm uppercase h-14 w-28 bg-amber-500'>
-                Shop now
-              </a>
-            </Link>
+              <Link href={`/client/categories${cat.url}`} passHref>
+                <a className='flex items-center justify-center text-black font-black text-sm uppercase h-12 w-28 bg-amber-500 bg-opacity-80 mt-8 hover:bg-opacity-100'>
+                  Shop now
+                </a>
+              </Link>
+            </div>
           </motion.div>
         ))}
       </motion.div>

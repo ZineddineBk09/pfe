@@ -6,7 +6,7 @@ const Layout = ({ children }) => {
   return (
     <div className='bg-bg-index h-full w-screen object-cover overflow-auto'>
       <div className='relative h-full bg-black bg-opacity-30'>
-        <Header />
+        <Header transparent={true} />
         {children}
         <Footer />
       </div>

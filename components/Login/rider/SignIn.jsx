@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { signIn, useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
-import Header from '../../Header'
+import Header2 from '../../Header2'
 import { useStateValue } from '../../../React-Context-Api/context'
 import { setRiderSession } from '../../../React-Context-Api/Actions/riderActions'
 
@@ -69,7 +69,7 @@ export default function SignIn({ csrfToken }) {
 
   return (
     <div className='flex mt-10 bg-slate-900/20 h-screen'>
-      <Header hideSearch={true} hideBasket={true} hideOptions={true} />
+      <Header2 hideSearch={true} hideBasket={true} hideOptions={true} />
       <div className='mt-16 border-slate-700 shadow-lg mx-auto my-auto w-full max-w-md rounded-lg border bg-white py-10 px-1 '>
         <div className='text-primary m-6'>
           <div className='mt-3 flex flex-col items-center justify-center'>

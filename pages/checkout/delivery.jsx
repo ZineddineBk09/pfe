@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 const OrderCard = dynamic(() => import('../../components/OrderCard'))
-const Header = dynamic(() => import('../../components/Header'))
+const Header2 = dynamic(() => import('../../components/Header2'))
 const PayementForm = dynamic(() =>
   import('../../components/forms/PayementForm')
 )
@@ -25,7 +25,7 @@ const Delivery = () => {
   if (user?.provider == 'client-provider') {
     return (
       <div className=' bg-gray-100 relative p-2 overflow-x-scroll'>
-        <Header hideSearch={true} />
+        <Header2 hideSearch={true} />
         <button
           className='text-xl font-semibold md:text-3xl mr-2 px-2 hover:bg-gray-200 rounded-full fixed top-20'
           onClick={() => router.back()}

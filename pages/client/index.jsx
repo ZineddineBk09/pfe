@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import React, { useEffect, useState } from 'react'
 const Footer = dynamic(() => import('../../components/Footer'))
-const Header = dynamic(() => import('../../components/Header'))
+const Header2 = dynamic(() => import('../../components/Header2'))
 const ProductsCategories = dynamic(() =>
   import('../../components/ProductsCategories')
 )
@@ -23,7 +23,7 @@ export default function Home({}) {
 
   return (
     <div className='relative flex flex-col bg-gray-100 bg-no-repeat min-h-screen w-screen object-cover overflow-y-auto overflow-x-hidden'>
-      <Header />
+      <Header2 />
       <ImagesSlider />
       <ProductsCategories categories={categories} />
       <Footer />

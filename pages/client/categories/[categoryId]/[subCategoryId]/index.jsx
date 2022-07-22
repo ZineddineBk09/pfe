@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 const Body = dynamic(() => import('../../../../../components/HomeBody'))
-const CategoriesFilter = dynamic(() =>
-  import('../../../../../components/CategoriesFilter')
+const CategoriesFilter2 = dynamic(() =>
+  import('../../../../../components/CategoriesFilter2')
 )
-const Header = dynamic(() => import('../../../../../components/Header'))
+const Header2 = dynamic(() => import('../../../../../components/Header2'))
 const Footer = dynamic(() => import('../../../../../components/Footer'))
 const ProductsCategories = dynamic(() =>
   import('../../../../../components/ProductsCategories')
@@ -66,9 +66,9 @@ const CategoryId = () => {
   }, [])
 
   return (
-    <motion.div exit={{ opacity: 0 }} initial='initial' animate='animate' className='bg-black'>
-      <Header />
-      <CategoriesFilter categories={categories} />
+    <motion.div exit={{ opacity: 0 }} initial='initial' animate='animate'>
+      <Header2 />
+      <CategoriesFilter2 categories={categories} />
       {products.length == 0 && <ImagesSlider />}
       {categories.length > 1 && <ProductsCategories categories={categories} />}
       {products?.length > 0 && <Body products={products} />}

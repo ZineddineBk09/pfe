@@ -1,8 +1,8 @@
 import React from 'react'
-const CategoriesFilter = dynamic(() =>
-  import('../../../../components/CategoriesFilter')
+const CategoriesFilter2 = dynamic(() =>
+  import('../../../../components/CategoriesFilter2')
 )
-const Header = dynamic(() => import('../../../../components/Header'))
+const Header2 = dynamic(() => import('../../../../components/Header2'))
 const Footer = dynamic(() => import('../../../../components/Footer'))
 const ProductsCategories = dynamic(() =>
   import('../../../../components/ProductsCategories')
@@ -20,10 +20,9 @@ const CategoryId = ({ products, categories }) => {
       exit={{ opacity: 0 }}
       initial='initial'
       animate='animate'
-      className=' bg-black '
     >
-      <Header />
-      <CategoriesFilter categories={categories} />
+      <Header2 />
+      <CategoriesFilter2 categories={categories} />
       <ImagesSlider />
       <ProductsCategories categories={categories} />
       <Footer />
