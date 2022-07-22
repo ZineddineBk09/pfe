@@ -5,6 +5,7 @@ import {
   addToBasket,
   removeFromBasket,
 } from '../React-Context-Api/Actions/basketActions'
+
 import Link from 'next/link'
 import { updateQuantity } from '../React-Context-Api/Actions/productsActions'
 import CurrencyFormat from 'react-currency-format'
