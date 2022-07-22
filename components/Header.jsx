@@ -104,7 +104,7 @@ function Header({ hideSearch, hideBasket, hideOptions }) {
 
   return (
     <nav
-      className='top-0 left-0 right-0 flex justify-between h-14 w-full items-center bg-transparent text-black lg:h-16 z-30  '
+      className='top-0 left-0 right-0 flex justify-between h-14 w-full items-center bg-transparent text-white lg:h-16 z-30  '
       onClick={() => setSuggestions([])}
     >
       {/* Logo and title */}
@@ -136,14 +136,14 @@ function Header({ hideSearch, hideBasket, hideOptions }) {
         >
           <input
             type='text'
-            className='w-5/6 rounded-l px-2 outline-none h-10 text-black font-bold border-2 border-black bg-transparent'
+            className='w-5/6 rounded-l px-2 outline-none h-10 text-white font-bold border-2 border-white bg-transparent'
             placeholder='Cherchez un produit, une marque ou une catégorie'
             value={searchTerm}
             onChange={handleChange}
           />
 
           <button
-            className='border-1 rounded-r px-1  md:px-2 h-10 lg:px-3 text-black font-bold  border-2  hover:shadow-black hover:shadow-sm border-black '
+            className='border-1 rounded-r px-1  md:px-2 h-10 lg:px-3 text-white font-bold  border-2  hover:shadow-white hover:shadow-sm border-white '
             type='submit'
           >
             <SearchOutlinedIcon />
@@ -160,7 +160,7 @@ function Header({ hideSearch, hideBasket, hideOptions }) {
             {suggestions.map(({ id, name, img }) => (
               <li key={id}>
                 <Link href={`/client/products/${id}`} passHref>
-                  <a className='flex justify-between items-center px-2 py-1 hover:bg-gray-100 cursor-pointer bg-black'>
+                  <a className='flex justify-between items-center px-2 py-1 hover:bg-gray-100 cursor-pointer bg-white'>
                     {/* Avoid long products name by truncating them to max length = 100 */}
                     <p className='text-gray-600 mr-4'>{truncate(name, 70)}</p>
                     <Image src={img} alt={name} height={40} width={35} />
@@ -177,7 +177,7 @@ function Header({ hideSearch, hideBasket, hideOptions }) {
         <div className='relative ml-auto'>
           <div className='flex items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg group hover:text-amber-500 '>
             {user ? (
-              <p className='text-black'>
+              <p className='text-white'>
                 Bonjour,
                 <span className='font-semibold'> {user.name}</span>
               </p>
@@ -186,7 +186,7 @@ function Header({ hideSearch, hideBasket, hideOptions }) {
                 <Link href='/client/auth/signin' passHref>
                   <a
                     className={
-                      'border-blue rounded  text-black font-bold border-2 bg-transparent py-2 px-4  hover:shadow-black hover:shadow-sm hover:scale-105 focus:outline-none text-xs md:text-sm lg:text-base border-black '
+                      'border-blue rounded  text-white font-bold border-2 bg-transparent py-2 px-4  hover:shadow-white hover:shadow-sm hover:scale-105 focus:outline-none text-xs md:text-sm lg:text-base border-white '
                     }
                   >
                     S&apos;identifier
@@ -195,7 +195,7 @@ function Header({ hideSearch, hideBasket, hideOptions }) {
               </div>
             )}
             <button
-              className='text-black text-xs ml-2 p-1 rounded-full hover:bg-gray-800 '
+              className='text-white text-xs ml-2 p-1 rounded-full hover:bg-gray-800 '
               onClick={() => setShowOptions(!showOptions)}
             >
               {showOptions ? (
@@ -208,7 +208,7 @@ function Header({ hideSearch, hideBasket, hideOptions }) {
 
           {/* Notifications */}
           {showOptions && (
-            <ul className='fixed bg-black text-slate-700 rounded top-12 w-fit border border-slate-600'>
+            <ul className='fixed bg-white text-slate-700 rounded top-12 w-fit border border-slate-600'>
               <li className='flex justify-between items-center hover:bg-gray-100 '>
                 <Link
                   href={user ? '/client/notifications' : '/client/auth/signin'}
