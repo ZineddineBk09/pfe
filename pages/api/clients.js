@@ -2,6 +2,7 @@ import { hashPassword, verifyPassword } from '../../lib/passwordHandler'
 import { getSession } from 'next-auth/react'
 const { connectToDatabase } = require('../../lib/mongodb')
 import { v4 } from 'uuid'
+import { sendConfirmationEmail } from '../../lib/mailer'
 
 export default async function handler(req, res) {
   // switch the methods
@@ -40,14 +41,23 @@ async function addClient(req, res) {
     // connect to the database
     let { db, client } = await connectToDatabase()
 
-    //check for existing email
-    const checkExistingMail = await db
+    //check for existing email in clients collection
+    const checkExistingMail1 = await db
       .collection('clients')
       .find({ email: email })
       .toArray()
 
-    if (checkExistingMail?.length) {
-      console.log('Email already exists : ', checkExistingMail[0].email)
+    //check for existing email in pending clients collection
+    const checkExistingMail2 = await db
+      .collection('pendingClients')
+      .find({ email: email })
+      .toArray()
+
+    if (checkExistingMail1?.length > 0 || checkExistingMail2?.length > 0) {
+      console.log(
+        'Email already exists : ',
+        checkExistingMail1[0].email || checkExistingMail2[0].email
+      )
       res.status(422).send({
         message: "E-mail de l'utilisateur existe déjà",
         success: false,
@@ -56,16 +66,25 @@ async function addClient(req, res) {
       return
     }
 
-    //check for existing username
-    const checkExistingUsername = await db
+    //check for existing username in clients collection
+    const checkExistingUsername1 = await db
       .collection('clients')
       .find({ username: username })
       .toArray()
 
-    if (checkExistingUsername?.length) {
+    //check for existing username in pending clients collection
+    const checkExistingUsername2 = await db
+      .collection('pendingClients')
+      .find({ username: username })
+      .toArray()
+
+    if (
+      checkExistingUsername1?.length > 0 ||
+      checkExistingUsername2?.length > 0
+    ) {
       console.log(
         'Username already exists : ',
-        checkExistingUsername[0].username
+        checkExistingUsername1[0].username || checkExistingUsername2[0].username
       )
       res.status(422).send({
         message: "Username de l'utilisateur existe déjà",
@@ -76,10 +95,19 @@ async function addClient(req, res) {
     }
 
     const hashedPass = await hashPassword(password)
+    const id = v4().toString()
+    //send confirmation email
+    await sendConfirmationEmail({
+      toUser: {
+        email,
+        username,
+      },
+      clientId: id,
+    })
     // add the Rider and hashing the password
     //JSON.parse() takes a JSON string and transforms it into a JavaScript object.
-    await db.collection('clients').insertOne({
-      id: v4().toString(),
+    await db.collection('pendingClients').insertOne({
+      id,
       date,
       username,
       email,

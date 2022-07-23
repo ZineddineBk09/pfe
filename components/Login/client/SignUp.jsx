@@ -17,7 +17,6 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log('values submited: ', values)
     await fetch('/api/clients', {
       method: 'POST',
       body: JSON.stringify({
@@ -25,7 +24,9 @@ export default function Register() {
         ...values,
       }),
     }).then((result) => {
-      if (result.error) {
+      console.log('Sign up result : ', result)
+      if (result.ok) {
+        console.log('Error:  ', result.error)
         setErr(result.error)
         setValues(initialValues)
       } else {
