@@ -44,6 +44,7 @@ export default function Register() {
   const handleInputChange = (e) => {
     //Reset the err message to empty message
     setErr('')
+    setDisableSubmit(false)
     console.log('handleInputChange : ', values)
     const { name, value } = e.target
     setValues({
