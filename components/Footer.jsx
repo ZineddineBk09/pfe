@@ -110,30 +110,6 @@ const Footer = () => {
                     </a>
                   </Link>
                 </li>
-                <li className='h-[1px] bg-white w-2/6 '></li>
-                <li className='flex '>
-                  <Link
-                    href='https://www.linkedin.com/in/walid-chebbab-4852a1201/'
-                    className=' '
-                    passHref
-                  >
-                    <a title='Walid Chebbab' className='hover:text-amber-300'>
-                      <LinkedInIcon />
-                    </a>
-                  </Link>
-                  <Link
-                    href='https://github.com/walidchb'
-                    className=''
-                    passHref
-                  >
-                    <a
-                      title='Walid Chebbab'
-                      className='hover:text-amber-300 ml-2'
-                    >
-                      <GitHubIcon />
-                    </a>
-                  </Link>
-                </li>
               </ul>
             </div>
             <div className='space-y-3'>

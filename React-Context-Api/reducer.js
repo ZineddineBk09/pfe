@@ -123,20 +123,15 @@ const reducer = (state = initialState, action) => {
       return { ...state, basket: [] }
 
     case SEARCH_PRODUCTS:
-      console.log('SEARCH_PRODUCTS')
       return { ...state, products: action.payload }
 
     case FILTER_PRODUCTS:
-      console.log('FILTER_PRODUCTS')
       return { ...state, filteredProducts: action.payload }
 
     case UNFILTER_PRODUCTS:
-      console.log('UNFILTER_PRODUCTS')
       return { ...state, filteredProducts: [] }
 
     case SET_CLIENT_SESSION:
-      console.log('SET_CLIENT_SESSION : ', action.payload)
-
       //create a cookie with the client session and delete the old one
       removeCookie('clientSession')
 
@@ -144,21 +139,17 @@ const reducer = (state = initialState, action) => {
       return { ...state, client: action.payload }
 
     case REMOVE_CLIENT_SESSION:
-      console.log('REMOVE_CLIENT_SESSION')
       //remove the client session from the cookies
       removeCookie('clientSession')
       return { ...state, client: {} }
 
     case SET_RIDER_SESSION:
-      console.log('SET_RIDER_SESSION : ', action.payload)
-
       //create a cookie with the RIDER session
       removeCookie('riderSession')
       setCookie('riderSession', action.payload)
       return { ...state, rider: action.payload }
 
     case REMOVE_RIDER_SESSION:
-      console.log('REMOVE_RIDER_SESSION')
       //remove the RIDER session from the cookie
       removeCookie('riderSession')
       return { ...state, rider: {} }

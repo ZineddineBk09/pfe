@@ -16,7 +16,7 @@ export default NextAuth({
         // console.log('Token : ', token)
         session.user = token.user
         session.user.provider = token.provider
-       // console.log('Session after change: ', session)
+        // console.log('Session after change: ', session)
       }
       return session
     },
@@ -113,11 +113,10 @@ export default NextAuth({
           throw new Error("Le mot de passe ou l'e-mail ne correspond pas")
         }
         //Else send success response
-        //client.close()
 
         return {
           id: result.id,
-          name: result.email.split('@')[0],
+          name: result.username,
           email: result.email,
           date: result.date,
         }

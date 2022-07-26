@@ -3,6 +3,8 @@ import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import Header2 from '../../Header2'
 
+import { setClientImage } from '../../../React-Context-Api/Actions/clientActions'
+
 export default function Register() {
   const router = useRouter()
   const initialValues = {
@@ -14,6 +16,7 @@ export default function Register() {
   const [values, setValues] = useState(initialValues)
   //Error message when the client sign up
   const [err, setErr] = useState('')
+  const [disableSubmit, setDisableSubmit] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -25,13 +28,15 @@ export default function Register() {
       }),
     }).then((result) => {
       console.log('Sign up result : ', result)
-      if (result.ok) {
-        console.log('Error:  ', result.error)
+      if (!result.ok) {
+        console.log('Error:  ', result)
         setErr(result.error)
-        setValues(initialValues)
+        //setValues(initialValues)
+        setErr('Email, username existe déjà')
       } else {
-        //router.back()
-        router.push('/client/auth/signin')
+        setDisableSubmit(true)
+        alert('Vérifier votre email pour activer votre compte.')
+        //router.push('/client/auth/signin')
       }
     })
   }
@@ -39,7 +44,7 @@ export default function Register() {
   const handleInputChange = (e) => {
     //Reset the err message to empty message
     setErr('')
-
+    console.log('handleInputChange : ', values)
     const { name, value } = e.target
     setValues({
       ...values,
@@ -52,7 +57,7 @@ export default function Register() {
       <Header2 hideSearch={true} hideBasket={true} hideOptions={true} />
       <div className='mt-16 border-slate-700 m-auto w-full max-w-md rounded-lg border bg-white px-1'>
         <div className='text-primary m-6'>
-          <div className='mt-3 flex items-center justify-center'>
+          <div className='mt-3 flex flex-col items-center justify-center'>
             {err && (
               <p className='text-red-500 font-medium text-sm bg-red-200 p-1 rounded'>
                 {err}
@@ -76,6 +81,7 @@ export default function Register() {
               className={
                 'text-primary mb-4 w-full rounded-md border p-2 text-sm outline-none transition duration-150 ease-in-out'
               }
+              maxLength='12'
               required
             />
             {/* ----------------E-mail------------- */}
@@ -111,8 +117,9 @@ export default function Register() {
             <div className='mt-3 flex items-center justify-center'>
               <button
                 className={
-                  'text-md border-blue rounded border bg-amber-500 py-2 px-4 text-white hover:bg-amber-400 focus:border-black focus:outline-none'
+                  'disabled:opacity-60 text-md border-blue rounded border bg-amber-500 py-2 px-4 text-white hover:bg-amber-400 focus:border-black focus:outline-none'
                 }
+                disabled={disableSubmit}
                 type='submit'
               >
                 S&apos;inscrire

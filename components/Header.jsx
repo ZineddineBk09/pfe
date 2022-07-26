@@ -7,6 +7,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications'
 import LogoutIcon from '@mui/icons-material/Logout'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
+import PersonIcon from '@mui/icons-material/Person'
 import { filterProducts } from '../React-Context-Api/Actions/productsActions'
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'
 import HelpIcon from '@mui/icons-material/Help'
@@ -17,14 +18,13 @@ import { signOut } from 'next-auth/react'
 import Image from 'next/image'
 import Logo from '../public/images/Logo.jpg'
 
-function Header({ hideSearch, hideBasket, hideOptions,transparent }) {
+function Header({ hideSearch, hideBasket, hideOptions, transparent }) {
   const [suggestions, setSuggestions] = useState([])
   const [{ basket, client }, dispatch] = [...useStateValue()] || []
   const [searchTerm, setSearchTerm] = useState('')
   //logged user session
   const [user, setUser] = useState({})
   const [localBasket, setLocalBasket] = useState([])
-  const [showSidebar, setShowSidebar] = useState(false)
   const [showOptions, setShowOptions] = useState(false)
 
   //filter products after we search
@@ -35,10 +35,10 @@ function Header({ hideSearch, hideBasket, hideOptions,transparent }) {
     function updateBasketAndClient() {
       setLocalBasket(getCookie('basket'))
       setUser(getCookie('clientSession'))
-      //console.log('user : ', user)
     }
     updateBasketAndClient()
   }, [basket, client])
+  console.log('user : ', user)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -99,8 +99,29 @@ function Header({ hideSearch, hideBasket, hideOptions,transparent }) {
     //deleting the rider session cookie
     removeCookie('clientSession')
 
-    signOut({ callbackUrl: 'http://localhost:3000/client' })
+    signOut({ callbackUrl: '/' })
   }
+
+  const [profilePicture, setProfilePicture] = useState('')
+  //get the user profile picture from the database with the api/clients/getClientImage
+  useEffect(() => {
+    const fetchImage = async () => {
+      try {
+        const response = await fetch(`/api/clients/getClientImage`, {
+          method: 'POST',
+          body: JSON.stringify({
+            clientId: user?.id || client?.id,
+          }),
+        })
+        await response.json().then((data) => {
+          setProfilePicture(data)
+        })
+      } catch (err) {
+        console.error(err)
+      }
+    }
+    fetchImage()
+  }, [user?.id, client?.id])
 
   return (
     <nav
@@ -177,12 +198,24 @@ function Header({ hideSearch, hideBasket, hideOptions,transparent }) {
       {/* ----------Authentication + Options------------ */}
       {!hideOptions && (
         <div className='relative ml-auto'>
-          <div className='flex items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg group hover:text-amber-500 '>
+          <div className='flex items-center  p-2 w-full text-base font-normal text-gray-900 rounded-lg group hover:text-amber-500 '>
             {user ? (
-              <p className='text-white'>
-                Bonjour,
-                <span className='font-semibold'> {user.name}</span>
-              </p>
+              <div className='flex items-center justify-between'>
+                <img
+                  src={
+                    profilePicture?.image ||
+                    'https://t3.ftcdn.net/jpg/00/64/67/52/360_F_64675209_7ve2XQANuzuHjMZXP3aIYIpsDKEbF5dD.jpg'
+                  }
+                  alt=''
+                  className='rounded-full w-10 h-10 mx-4'
+                  onClick={() => setShowOptions(!showOptions)}
+                  title='Profile'
+                />
+                <p className='text-white'>
+                  Bonjour,
+                  <span className='font-semibold'> {user.name}</span>
+                </p>
+              </div>
             ) : (
               <div>
                 <Link href='/client/auth/signin' passHref>
@@ -209,8 +242,34 @@ function Header({ hideSearch, hideBasket, hideOptions,transparent }) {
           </div>
 
           {/* Notifications */}
+
           {showOptions && (
             <ul className='fixed bg-white text-slate-700 rounded top-12 w-fit border border-slate-600'>
+              <li className='flex justify-between items-center hover:bg-gray-100 '>
+                <Link href='/checkout' passHref>
+                  <a className='capitalize text-sm p-3'>
+                    <span className='mr-2'>
+                      <ShoppingCartIcon />
+                    </span>
+                    <span>Panier</span>
+                    <span className='px-1 py-0.5 text-right bg-amber-400 font-bold rounded-full ml-12 mx-auto'>
+                      {localBasket?.length || 0}
+                    </span>
+                  </a>
+                </Link>
+              </li>
+              {user && (
+                <li className='flex justify-between items-center hover:bg-gray-100 '>
+                  <Link href='/client/profile' passHref>
+                    <a className='capitalize text-sm p-3'>
+                      <span className='mr-2'>
+                        <PersonIcon />
+                      </span>
+                      <span>Profile</span>
+                    </a>
+                  </Link>
+                </li>
+              )}
               <li className='flex justify-between items-center hover:bg-gray-100 '>
                 <Link
                   href={user ? '/client/notifications' : '/client/auth/signin'}
@@ -252,7 +311,7 @@ function Header({ hideSearch, hideBasket, hideOptions,transparent }) {
               {/* Deconnécte */}
               {user && (
                 <li
-                  className='flex justify-between items-center hover:bg-gray-100 
+                  className='flex justify-between items-center hover:bg-gray-100 border-t 
                 '
                 >
                   <Link href='' passHref>

@@ -7,6 +7,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications'
 import LogoutIcon from '@mui/icons-material/Logout'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
+import PersonIcon from '@mui/icons-material/Person'
 import { filterProducts } from '../React-Context-Api/Actions/productsActions'
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'
 import HelpIcon from '@mui/icons-material/Help'
@@ -99,25 +100,35 @@ function Header({ hideSearch, hideBasket, hideOptions }) {
     //deleting the rider session cookie
     removeCookie('clientSession')
 
-    signOut({ callbackUrl: 'http://localhost:3000/client' })
+    signOut({ callbackUrl: '/' })
   }
+
+  const [profilePicture, setProfilePicture] = useState('')
+  //get the user profile picture from the database with the api/clients/getClientImage
+  useEffect(() => {
+    const fetchImage = async () => {
+      try {
+        const response = await fetch(`/api/clients/getClientImage`, {
+          method: 'POST',
+          body: JSON.stringify({
+            clientId: user?.id || client?.id,
+          }),
+        })
+        await response.json().then((data) => {
+          setProfilePicture(data)
+        })
+      } catch (err) {
+        console.error(err)
+      }
+    }
+    fetchImage()
+  }, [user?.id, client?.id])
 
   return (
     <nav
       className='fixed top-0 left-0 right-0 flex justify-between h-14 w-full items-center bg-slate-900 text-white lg:h-16 z-30 shadow-md shadow-amber-400'
       onClick={() => setSuggestions([])}
     >
-      {/* <button
-        onClick={() => setShowSidebar(!showSidebar)}
-        className='lg:hidden ml-2 md:mx-4 text-amber-500 hover:bg-gray-800 hover:rounded-full p-1 md:scale-125 z-20 cursor-pointer '
-      >
-        <p className='font-bold text-2xl hover:text-3xl'>
-          <MenuIcon />
-        </p>
-      </button>
-      {showSidebar && (
-        <Sidebar showSidebar={showSidebar} hideFilters={hideSearch} />
-      )} */}
       {/* Logo and title */}
       {/* check if the window url contains "client" */}
 
@@ -188,10 +199,22 @@ function Header({ hideSearch, hideBasket, hideOptions }) {
         <div className='relative ml-auto'>
           <div className='flex items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg group hover:text-amber-500 '>
             {user ? (
-              <p className='text-white'>
-                Bonjour,
-                <span className='font-semibold'> {user.name}</span>
-              </p>
+              <div className='flex items-center justify-between'>
+                <img
+                  src={
+                    profilePicture.image ||
+                    'https://t3.ftcdn.net/jpg/00/64/67/52/360_F_64675209_7ve2XQANuzuHjMZXP3aIYIpsDKEbF5dD.jpg'
+                  }
+                  alt=''
+                  className='rounded-full w-10 h-10 mx-4 object-contain hover:cursor-pointer'
+                  onClick={() => setShowOptions(!showOptions)}
+                  title='Profile'
+                />
+                <p className='text-white'>
+                  Bonjour,
+                  <span className='font-semibold'> {user.name}</span>
+                </p>
+              </div>
             ) : (
               <div>
                 <Link href='/client/auth/signin' passHref>
@@ -219,7 +242,7 @@ function Header({ hideSearch, hideBasket, hideOptions }) {
 
           {/* Notifications */}
           {showOptions && (
-            <ul className='fixed bg-white text-slate-700 rounded top-12 w-fit border border-slate-600'>
+            <ul className='fixed bg-white text-slate-700 rounded top-12 border border-slate-600'>
               <li className='flex justify-between items-center hover:bg-gray-100 '>
                 <Link href='/checkout' passHref>
                   <a className='capitalize text-sm p-3'>
@@ -227,12 +250,24 @@ function Header({ hideSearch, hideBasket, hideOptions }) {
                       <ShoppingCartIcon />
                     </span>
                     <span>Panier</span>
-                    <span className='px-1 py-0.5 text-right bg-amber-400 font-bold rounded-full ml-8 mx-auto'>
+                    <span className='px-1 py-0.5 text-right bg-amber-400 font-bold rounded-full ml-12 mx-auto'>
                       {localBasket?.length || 0}
                     </span>
                   </a>
                 </Link>
               </li>
+              {user && (
+                <li className='flex justify-between items-center hover:bg-gray-100 '>
+                  <Link href='/client/profile' passHref>
+                    <a className='capitalize text-sm p-3'>
+                      <span className='mr-2'>
+                        <PersonIcon />
+                      </span>
+                      <span>Profile</span>
+                    </a>
+                  </Link>
+                </li>
+              )}
               <li className='flex justify-between items-center hover:bg-gray-100 '>
                 <Link
                   href={user ? '/client/notifications' : '/client/auth/signin'}
@@ -274,7 +309,7 @@ function Header({ hideSearch, hideBasket, hideOptions }) {
               {/* Deconnécte */}
               {user && (
                 <li
-                  className='flex justify-between items-center hover:bg-gray-100 
+                  className='flex justify-between items-center hover:bg-gray-100 border-t
                 '
                 >
                   <Link href='' passHref>

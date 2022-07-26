@@ -32,12 +32,7 @@ async function addClient(req, res) {
   try {
     //Getting the body fields
     const { date, username, email, password } = JSON.parse(req.body)
-    console.log('Client : ', {
-      date,
-      username,
-      email,
-      password,
-    })
+console.log(date, username, email, password)
     // connect to the database
     let { db, client } = await connectToDatabase()
 
@@ -56,7 +51,7 @@ async function addClient(req, res) {
     if (checkExistingMail1?.length > 0 || checkExistingMail2?.length > 0) {
       console.log(
         'Email already exists : ',
-        checkExistingMail1[0].email || checkExistingMail2[0].email
+        checkExistingMail1[0]?.email || checkExistingMail2[0]?.email
       )
       res.status(422).send({
         message: "E-mail de l'utilisateur existe déjà",
@@ -84,7 +79,7 @@ async function addClient(req, res) {
     ) {
       console.log(
         'Username already exists : ',
-        checkExistingUsername1[0].username || checkExistingUsername2[0].username
+        checkExistingUsername1[0]?.username || checkExistingUsername2[0]?.username
       )
       res.status(422).send({
         message: "Username de l'utilisateur existe déjà",
@@ -106,6 +101,7 @@ async function addClient(req, res) {
     })
     // add the Rider and hashing the password
     //JSON.parse() takes a JSON string and transforms it into a JavaScript object.
+
     await db.collection('pendingClients').insertOne({
       id,
       date,
@@ -113,6 +109,13 @@ async function addClient(req, res) {
       email,
       password: hashedPass,
     })
+
+    //add the client image to images collection
+    await db.collection('images').insertOne({
+      id,
+      image: '',
+    })
+
     console.log(username, ' added successfully !!')
     // return a message
     return res.status(200).send({

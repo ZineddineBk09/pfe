@@ -23,6 +23,7 @@ export default function Login({ csrfToken }) {
 
   //track the session when it changes
   useEffect(() => {
+   // console.log('User : ', session?.user)
     session?.user && dispatch(setClientSession(session?.user))
   }, [session])
 
@@ -63,6 +64,8 @@ export default function Login({ csrfToken }) {
       }
     })
   }
+
+  
 
   return (
     <div className='flex mt-10 bg-slate-900/20 h-screen'>
