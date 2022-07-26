@@ -1,3 +1,4 @@
+
 const { connectToDatabase } = require('../../../lib/mongodb')
 
 export default async function handler(req, res) {

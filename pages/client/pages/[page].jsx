@@ -92,30 +92,3 @@ export async function getServerSideProps(context) {
     props: { products, currentPage: pageNumber, pages },
   }
 }
-
-//export async function getStaticPaths(req) {
-//
-//  const paths = []
-//  try {
-//    //setting the pages urls and there number
-//    const response = await fetch(
-//      `/api/products/allProducts`
-//    )
-//    await response.json().then((data) => {
-//      // Get the number of pages by dividing the number of products by the number of products per page
-//      const totalPages = Math.floor(data?.length / 30) + 1
-//
-//      for (let index = 0; index < totalPages; index++) {
-//        paths.push({ params: { page: 'page_' + (index + 1) } })
-//      }
-//    })
-//  } catch (err) {
-//    console.error(err)
-//  }
-//  console.log('paths : ', paths)
-//  return {
-//    paths,
-//    fallback: false,
-//  }
-//}
-//
