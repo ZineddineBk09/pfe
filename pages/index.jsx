@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { useEffect } from 'react'
-const Head = dynamic(() => import('next/head'))
+import Head from 'next/head'
 const Hero = dynamic(() => import('../components/landingPage/Hero'))
 const Layout = dynamic(() => import('../components/landingPage/Layout/Layout'))
 

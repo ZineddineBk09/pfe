@@ -12,7 +12,7 @@ const ProfilePage = ({ client }) => {
     //deleting the rider session cookie
     removeCookie('clientSession')
 
-    signOut({ callbackUrl: '/client/auth/signin' })
+    signOut({ callbackUrl: '/' })
   }
 
   const getBase64 = (file) => {

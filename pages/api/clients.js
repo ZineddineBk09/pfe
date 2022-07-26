@@ -2,7 +2,7 @@ import { hashPassword, verifyPassword } from '../../lib/passwordHandler'
 import { getSession } from 'next-auth/react'
 const { connectToDatabase } = require('../../lib/mongodb')
 import { v4 } from 'uuid'
-import { sendConfirmationEmail } from '../../lib/mailer'
+import { sendClientConfirmationEmail } from '../../lib/mailer'
 
 export default async function handler(req, res) {
   // switch the methods

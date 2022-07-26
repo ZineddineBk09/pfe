@@ -1,12 +1,11 @@
-import { getCsrfToken } from 'next-auth/react'
 import React from 'react'
+const SignUp = dynamic(() => import('../../../components/Login/rider/SignUp'))
+import { motion } from 'framer-motion'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import { useRouter } from 'next/router'
-import { motion } from 'framer-motion'
 import dynamic from 'next/dynamic'
-const SignIn = dynamic(() => import('../../../components/Login/rider/SignIn'))
 
-const Signin = ({ csrfToken }) => {
+const Signup = () => {
   const router = useRouter()
 
   return (
@@ -14,7 +13,7 @@ const Signin = ({ csrfToken }) => {
       exit={{ opacity: 0 }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className='py-2 bg-gray-100 min-h-screen min-w-screen bg-register-background  bg-no-repeat bg-cover'
+      className='py-2 bg-gray-100 min-w-screen bg-register-background  bg-no-repeat bg-cover'
     >
       <button
         className='text-xl font-semibold md:text-3xl mr-2 px-2 hover:bg-gray-200 rounded-full fixed top-20'
@@ -22,16 +21,9 @@ const Signin = ({ csrfToken }) => {
       >
         <ArrowBackIcon />
       </button>
-      <SignIn csrfToken={csrfToken} />
+      <SignUp />
     </motion.div>
   )
 }
 
-export default Signin
-
-export async function getServerSideProps(context) {
-  const csrfToken = await getCsrfToken(context)
-  return {
-    props: { csrfToken },
-  }
-}
+export default Signup

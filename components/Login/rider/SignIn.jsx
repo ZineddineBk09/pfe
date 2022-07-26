@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import Header2 from '../../Header2'
 import { useStateValue } from '../../../React-Context-Api/context'
 import { setRiderSession } from '../../../React-Context-Api/Actions/riderActions'
+import Link from 'next/link'
 
 export default function SignIn({ csrfToken }) {
   const router = useRouter()
@@ -19,6 +20,8 @@ export default function SignIn({ csrfToken }) {
 
   //track the session when it changes
   useEffect(() => {
+    console.log('USER : ')
+    console.log(session?.user)
     session?.user && dispatch(setRiderSession(session?.user))
   }, [session])
 
@@ -28,7 +31,7 @@ export default function SignIn({ csrfToken }) {
   const handleChange = (e) => {
     //Reset the err message to empty message
     setErr('')
-
+    console.log(values.user)
     const { name, value } = e.target
     setValues({
       user: {
@@ -47,6 +50,7 @@ export default function SignIn({ csrfToken }) {
       email: values.user.email,
       password: values.user.password,
     }).then((result) => {
+      console.log('Sign in result : ', result)
       if (result.error) {
         console.log('Errrror : ', result.error)
 
@@ -90,6 +94,8 @@ export default function SignIn({ csrfToken }) {
           >
             {/* --------------csrfToken-------------- */}
             <input name='csrfToken' type='hidden' defaultValue={csrfToken} />
+
+            {/* --------------Email-------------- */}
             <label>E-mail :</label>
             <input
               name='email'
@@ -102,6 +108,8 @@ export default function SignIn({ csrfToken }) {
               }
               required
             />
+
+            {/* --------------Password-------------- */}
             <label className='text-left'>Mot de passe :</label>
             <input
               name='password'
@@ -126,6 +134,13 @@ export default function SignIn({ csrfToken }) {
               </button>
             </div>
           </form>
+          <div className='mt-3 flex items-center justify-center'>
+            <Link href='/rider/auth/signup' passHref>
+              <a className='justify-center text-amber-500 hover:underline'>
+                Besoin de vous inscrire? Inscription gratuite
+              </a>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

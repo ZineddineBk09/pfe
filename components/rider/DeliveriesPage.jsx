@@ -123,7 +123,15 @@ const OrdersPage = ({ rider, deliveries }) => {
 
   return (
     <div>
-      {myDeliveries &&
+      {myDeliveries?.length == 0 ? (
+        <div className='bg-white flex flex-col items-center text-amber-500'>
+          <h1 className='uppercase text-3xl font-bold'>pas de commandes</h1>
+          <img
+            src='https://cdn.dribbble.com/users/357929/screenshots/2276751/media/678caef6068a976e4a0d94bbdba6b660.png?compress=1&resize=400x300&vertical=top'
+            className='h-64 w-full mx-auto object-contain'
+          />
+        </div>
+      ) : (
         myDeliveries.map((delivery, index) => (
           <div
             key={delivery?.id}
@@ -289,7 +297,8 @@ const OrdersPage = ({ rider, deliveries }) => {
               </div>
             </div>
           </div>
-        ))}
+        ))
+      )}
     </div>
   )
 }

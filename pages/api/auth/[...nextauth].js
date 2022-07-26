@@ -50,10 +50,15 @@ export default NextAuth({
         //Connect to DB
         let { db, client } = await connectToDatabase()
 
+        console.log('Creditentials : ', credentials)
+
         //Find rider with the email
         const result = await db.collection('riders').findOne({
           email: credentials.email,
         })
+
+        console.log('Result : ', result)
+
         //Not found - send error res
         if (!result) {
           console.log('User not found !!!!!!!!!!')
@@ -72,10 +77,10 @@ export default NextAuth({
         //Else send success response
         //client.close()
         return {
-          id: result.id,
-          name: result.email.split('@')[0],
-          email: result.email,
-          date: result.date,
+          id: result?.id,
+          name: result?.username,
+          email: result?.email,
+          date: result?.date,
         }
       },
     }),

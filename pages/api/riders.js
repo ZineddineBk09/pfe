@@ -1,6 +1,7 @@
 import { hashPassword, verifyPassword } from '../../lib/passwordHandler'
 const { connectToDatabase } = require('../../lib/mongodb')
 import { v4 } from 'uuid'
+import { sendRiderConfirmationEmail } from '../../lib/mailer'
 
 export default async function handler(req, res) {
   // switch the methods
@@ -31,10 +32,10 @@ async function addRider(req, res) {
     //Getting the body fields
     const {
       date,
-      name,
+      username,
       email,
       phoneNumber,
-      haveMoto,
+      haveTransport,
       havePermis,
       militaryFree,
       region,
@@ -43,10 +44,10 @@ async function addRider(req, res) {
     } = JSON.parse(req.body)
     console.log('Rider : ', {
       date,
-      name,
+      username,
       email,
       phoneNumber,
-      haveMoto,
+      haveTransport,
       havePermis,
       militaryFree,
       region,
@@ -56,22 +57,39 @@ async function addRider(req, res) {
     // connect to the database
     let { db, client } = await connectToDatabase()
 
-    //check for existing email
-    const checkExistingMail = await db
+    //check for existing email in riders collection
+    const checkExistingMail1 = await db
       .collection('riders')
       .find({ email: email })
       .toArray()
 
+    //check for existing email in pending riders collection
+    const checkExistingMail2 = await db
+      .collection('pendingRiders')
+      .find({ email: email })
+      .toArray()
+
     //check for existing phone
-    const checkExistingPhoneNumber = await db
+    const checkExistingPhoneNumber1 = await db
       .collection('riders')
       .find({
         phoneNumber: phoneNumber,
       })
       .toArray()
 
-    if (checkExistingMail?.length) {
-      console.log('Email already exists : ', checkExistingMail[0].email)
+    //check for existing phone in pending riders collection
+    const checkExistingPhoneNumber2 = await db
+      .collection('pendingRiders')
+      .find({
+        phoneNumber: phoneNumber,
+      })
+      .toArray()
+
+    if (checkExistingMail1?.length > 0 || checkExistingMail2?.length > 0) {
+      console.log(
+        'Email already exists : ',
+        checkExistingMail1[0]?.email || checkExistingMail2[0]?.email
+      )
       res.status(422).send({
         message: "E-mail de l'utilisateur existe déjà",
         success: false,
@@ -79,11 +97,10 @@ async function addRider(req, res) {
       //client.close()
       return
     }
-    if (checkExistingPhoneNumber?.length) {
-      console.log(
-        'Phone number already exists : ',
-        checkExistingPhoneNumber[0].phoneNumber
-      )
+    if (
+      checkExistingPhoneNumber1?.length > 0 ||
+      checkExistingPhoneNumber2?.length > 0
+    ) {
       res.status(422).send({
         message: "Le numéro de téléphone de l'utilisateur existe déjà",
         success: false,
@@ -91,17 +108,28 @@ async function addRider(req, res) {
       //client.close()
       return
     }
+
     const hashedPass = await hashPassword(password)
+    const id = v4().toString()
     // add the Rider and hashing the password
     //JSON.parse() takes a JSON string and transforms it into a JavaScript object.
 
-    await db.collection('riders').insertOne({
-      id: v4().toString(),
+    //send confirmation email
+    await sendRiderConfirmationEmail({
+      toUser: {
+        email,
+        username,
+      },
+      riderId: id,
+    })
+
+    await db.collection('pendingRiders').insertOne({
+      id,
       date,
-      name,
+      username,
       email,
       phoneNumber,
-      haveMoto,
+      haveTransport,
       havePermis,
       militaryFree,
       region,
@@ -109,6 +137,14 @@ async function addRider(req, res) {
       orders: [], //delivered orders
       password: hashedPass,
     })
+
+    //add the rider image to images collection
+    await db.collection('images').insertOne({
+      id,
+      image: '',
+    })
+
+    console.log(username, ' added successfully !!')
 
     // return a message
     return res.status(200).json({ message: 'Inscription avec succés !' })
@@ -162,7 +198,7 @@ async function updateRider(req, res) {
     )
 
     if (delivery.message == 'UPDATE ORDERS') {
-            console.log('MESSAGE : ', delivery.message)
+      console.log('MESSAGE : ', delivery.message)
 
       //Add to the orders array
       // update the Orders with the new Order a,d overwrite it's state

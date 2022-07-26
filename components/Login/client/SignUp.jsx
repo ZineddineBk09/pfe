@@ -64,7 +64,7 @@ export default function Register() {
               </p>
             )}
             <h1 className='text-primary mt-4 mb-2 text-2xl font-medium'>
-              Créez votre compte
+              Créez votre compte client
             </h1>
           </div>
           <form action='' onSubmit={handleSubmit}>

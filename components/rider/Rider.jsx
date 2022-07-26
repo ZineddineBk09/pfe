@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Header from '../Header'
+import Header2 from '../Header2'
 import NotificationsIcon from '@mui/icons-material/Notifications'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import InventoryIcon from '@mui/icons-material/Inventory'
@@ -49,8 +49,8 @@ const Rider = () => {
   }, [])
 
   return (
-    <div className='w-screen p-2 overflow-x-hidden'>
-      <Header hideSearch={true} hideBasket={true} hideOptions={true} />
+    <div className='w-screen overflow-x-hidden'>
+      <Header2 hideSearch={true} hideBasket={true} hideOptions={true} />
 
       <nav className='bg-white '>
         <div className='flex justify-around items-center h-20 rounded bg-gray-200 mb-4 transition duration-500 ease-in-out mt-14 lg:mt-16'>

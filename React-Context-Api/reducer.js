@@ -146,6 +146,7 @@ const reducer = (state = initialState, action) => {
     case SET_RIDER_SESSION:
       //create a cookie with the RIDER session
       removeCookie('riderSession')
+      console.log('Rider Cookie : ', action.payload)
       setCookie('riderSession', action.payload)
       return { ...state, rider: action.payload }
 
