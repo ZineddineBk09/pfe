@@ -50,7 +50,6 @@ export async function getServerSideProps(context) {
       }
     )
     await response.json().then((data) => {
-      console.log('PRODUCT : ', data);
       product = data
     })
   } catch (err) {

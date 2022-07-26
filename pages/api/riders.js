@@ -42,18 +42,7 @@ async function addRider(req, res) {
       startingDate,
       password,
     } = JSON.parse(req.body)
-    console.log('Rider : ', {
-      date,
-      username,
-      email,
-      phoneNumber,
-      haveTransport,
-      havePermis,
-      militaryFree,
-      region,
-      startingDate,
-      password,
-    })
+
     // connect to the database
     let { db, client } = await connectToDatabase()
 
@@ -144,13 +133,11 @@ async function addRider(req, res) {
       image: '',
     })
 
-    console.log(username, ' added successfully !!')
 
     // return a message
     return res.status(200).json({ message: 'Inscription avec succés !' })
   } catch (error) {
     // return an error
-    console.log('ERORRRRRRRRRRRRRRRRRRR ! ', error)
     return res.json({
       message: new Error(error).message,
       success: false,
@@ -198,7 +185,6 @@ async function updateRider(req, res) {
     )
 
     if (delivery.message == 'UPDATE ORDERS') {
-      console.log('MESSAGE : ', delivery.message)
 
       //Add to the orders array
       // update the Orders with the new Order a,d overwrite it's state
@@ -209,7 +195,6 @@ async function updateRider(req, res) {
         { $addToSet: { orders: { ...delivery, state: 2 } } }
       )
     } else if (delivery.message == 'DELETE ORDER') {
-      console.log('DELETE ORDER : ', delivery)
 
       //Delete from the orders array
       await db.collection('riders').updateOne(
@@ -219,7 +204,6 @@ async function updateRider(req, res) {
         { $pull: { orders: { id: delivery?.orderId } } }
       )
     } else if (delivery.message == 'UPDATE STATE') {
-      console.log('MESSAGE : ', delivery.message)
 
       //Delete from the orders array
       await db.collection('riders').updateOne(

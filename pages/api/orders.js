@@ -137,7 +137,6 @@ async function updateOrder(req, res) {
 
     // return a message
     //client.close()
-    console.log('Order updated successfully : ', id)
     return res.json({
       message: 'Order updated successfully',
       success: true,

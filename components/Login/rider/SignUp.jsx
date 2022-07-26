@@ -28,7 +28,6 @@ export default function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log('values submited: ', values)
     if (values.password === values.passwordConfirm) {
       await fetch('/api/riders', {
         method: 'POST',
@@ -57,10 +56,9 @@ export default function SignUp() {
   const handleInputChange = (e) => {
     const { name, value } = e.target
     setDisableSubmit(false)
-    console.log('handleInputChange : ', values)
+   
 
     if (name === 'region') {
-      console.log('region : ', JSON.parse(value))
       setValues({
         ...values,
         region: {

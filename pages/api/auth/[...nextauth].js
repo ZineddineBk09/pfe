@@ -50,14 +50,13 @@ export default NextAuth({
         //Connect to DB
         let { db, client } = await connectToDatabase()
 
-        console.log('Creditentials : ', credentials)
+   
 
         //Find rider with the email
         const result = await db.collection('riders').findOne({
           email: credentials.email,
         })
 
-        console.log('Result : ', result)
 
         //Not found - send error res
         if (!result) {

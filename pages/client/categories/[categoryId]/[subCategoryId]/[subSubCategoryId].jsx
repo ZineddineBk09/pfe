@@ -18,7 +18,6 @@ const CategoryId = ({ products, categories }) => {
     dispatch(unfilterProducts())
   }, [])
 
-  console.log('PRODUCTS : ', products)
   return (
     <motion.div exit={{ opacity: 0 }} initial='initial' animate='animate'>
       <Header2 />

@@ -16,7 +16,6 @@ const Rider = () => {
   const [orders, setOrders] = useState([])
 
   useEffect(() => {
-    console.log(rider);
     const fetchRiderAndOrders = async () => {
       //fetch the rider info
       try {
@@ -28,7 +27,6 @@ const Rider = () => {
         })
         await response1.json().then(async (data) => {
           setRider(data)
-          console.log('Rider :', data)
           //fetch the orders based on the rider region
           const response2 = await fetch(`/api/orders/ordersByRegion`, {
             method: 'POST',

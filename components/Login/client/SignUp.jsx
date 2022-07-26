@@ -27,9 +27,7 @@ export default function Register() {
         ...values,
       }),
     }).then((result) => {
-      console.log('Sign up result : ', result)
       if (!result.ok) {
-        console.log('Error:  ', result)
         setErr(result.error)
         //setValues(initialValues)
         setErr('Email, username existe déjà')
@@ -45,7 +43,6 @@ export default function Register() {
     //Reset the err message to empty message
     setErr('')
     setDisableSubmit(false)
-    console.log('handleInputChange : ', values)
     const { name, value } = e.target
     setValues({
       ...values,

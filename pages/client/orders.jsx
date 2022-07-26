@@ -49,7 +49,6 @@ const Orders = () => {
     fetchOrders()
   }, [user])
 
-  console.log('orders : ', orders)
 
   if (user.provider == 'client-provider') {
     return (

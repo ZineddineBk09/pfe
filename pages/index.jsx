@@ -10,7 +10,6 @@ export default function Home() {
     const fetchCategories = async () => {
       const response = await fetch('api/categories/allCategories')
       const data = await response.json()
-      console.log('DATA : ',data)
     }
     fetchCategories()
   }, [])

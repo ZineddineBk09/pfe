@@ -100,7 +100,7 @@ const reducer = (state = initialState, action) => {
       return { ...state, basket: newBasket1 }
 
     case UPDATE_QUANTITY:
-      console.log('UPDATE_QUANTITY : ', state.basket)
+      console.log('UPDATE_QUANTITY')
 
       const newBasket2 = state.basket.map((product) =>
         product.id === action.payload.id && product.name === action.payload.name
@@ -146,7 +146,6 @@ const reducer = (state = initialState, action) => {
     case SET_RIDER_SESSION:
       //create a cookie with the RIDER session
       removeCookie('riderSession')
-      console.log('Rider Cookie : ', action.payload)
       setCookie('riderSession', action.payload)
       return { ...state, rider: action.payload }
 

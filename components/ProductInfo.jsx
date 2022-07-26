@@ -53,7 +53,6 @@ const ProductInfo = ({ product }) => {
   //Update the product quantity when it changes
   useEffect(() => {
     dispatch(updateQuantity({ ...product, tags: [], quantity }))
-    console.log(product);
   }, [quantity])
 
   const easing = [0.6, -0.05, 0.01, 1]

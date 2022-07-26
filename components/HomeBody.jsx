@@ -31,7 +31,6 @@ function Body({ products }) {
         }),
       })
       await response.json().then((data) => {
-        console.log('data : ', data)
         //append the new products to the current products
         setMyProducts([...myProducts, ...data])
 

@@ -34,8 +34,6 @@ export default function PayementForm() {
     updateBasketAndClient()
   }, [basket, client])
 
-  console.log('user : ', user)
-
   const handleSubmit = async (e) => {
     e.preventDefault()
     await fetch('/api/orders', {
@@ -61,7 +59,6 @@ export default function PayementForm() {
   }
 
   const handleInputChange = (e) => {
-    console.log('values : ', values)
     const { name, value } = e.target
     if (name === 'city') {
       setValues({
@@ -69,7 +66,6 @@ export default function PayementForm() {
         city: { name: JSON.parse(value).name, price: JSON.parse(value).price },
       })
     } else if (name === 'region') {
-      console.log('region : ', JSON.parse(value))
       setValues({
         ...values,
         region: {

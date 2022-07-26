@@ -29,7 +29,6 @@ function ImagesSlider() {
     }
     fetchAds()
   }, [])
-  console.log('ADS : ', sliderProducts)
 
   return (
     <div className='overflow-hidden flex h-[80vh] w-full items-center justify-center rounded bg-gradient-to-b from-white to-gray-200 mt-20'>

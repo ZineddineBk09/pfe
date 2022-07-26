@@ -19,7 +19,6 @@ const Delivery = () => {
   useEffect(() => {
     console.log('-------- Delivery page --------')
     setUser(getCookie('clientSession'))
-    console.log('Session.client : ', user)
   }, [client])
 
   if (user?.provider == 'client-provider') {

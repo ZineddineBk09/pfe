@@ -49,7 +49,6 @@ export default function Login({ csrfToken }) {
       email: values.user.email,
       password: values.user.password,
     }).then((result) => {
-      console.log('Sign in result : ', result)
       if (result.error) {
         setErr(result.error)
         setValues({

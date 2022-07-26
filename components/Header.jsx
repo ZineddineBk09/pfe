@@ -38,7 +38,6 @@ function Header({ hideSearch, hideBasket, hideOptions, transparent }) {
     }
     updateBasketAndClient()
   }, [basket, client])
-  console.log('user : ', user)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -53,7 +52,7 @@ function Header({ hideSearch, hideBasket, hideOptions, transparent }) {
           }),
         })
         await response.json().then((data) => {
-          console.log('SEARCHED PRODUCTS  : ', data)
+         
           setFilteredProducts(data)
           dispatch(filterProducts(data))
         })
@@ -87,7 +86,6 @@ function Header({ hideSearch, hideBasket, hideOptions, transparent }) {
 
   const handleChange = async (e) => {
     setSearchTerm(e.target.value.toLowerCase())
-    console.log('CHANGEEE !!', searchTerm)
     searchTerm?.length >= 2 ? await fetchSuggestions() : setSuggestions([])
   }
 

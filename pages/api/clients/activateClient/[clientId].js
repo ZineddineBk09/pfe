@@ -10,7 +10,6 @@ export default async function handler(req, res) {
 export async function activateClient(req, res) {
   const clientId = req.query.clientId
   console.log('_____________________________')
-  console.log('clientId : ', clientId)
   if (!clientId) {
     return res.status(401).json({ message: 'Cannot Validate a Client!' })
   } else {
@@ -19,13 +18,11 @@ export async function activateClient(req, res) {
     const pendingClient = await db
       .collection('pendingClients')
       .findOne({ id: clientId })
-    console.log('pendingClient : ', pendingClient)
 
     if (!pendingClient) {
       return res.status(401).json({ message: 'Cannot Validate a Client! 1' })
     }
     const activeClient = await db.collection('clients').insertOne(pendingClient)
-    console.log('activeClient : ', activeClient)
 
     if (!activeClient) {
       return res.status(401).json({ message: 'Cannot Validate a Client! 2' })

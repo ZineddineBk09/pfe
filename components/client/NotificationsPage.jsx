@@ -29,7 +29,7 @@ const NotificationsPage = ({ notifications }) => {
       updatedNotification,
       ...myNotifications.slice(index + 1),
     ])
-    console.log('Updated notif : ', updatedNotification)
+    
   }
 
   const timeDiff = (date) => {

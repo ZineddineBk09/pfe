@@ -15,7 +15,6 @@ const OrdersPage = ({ rider, deliveries }) => {
 
   //show delivery products
   useEffect(() => {
-    console.log('DELEVERIES : ', deliveries)
     const ordersClone = deliveries?.map((order) => {
       return { ...order, showMore: false }
     })
@@ -36,7 +35,6 @@ const OrdersPage = ({ rider, deliveries }) => {
 
   //In case the client accepted the order
   const updateOrder = (order) => {
-    console.log('Order ', order.id, ' Delivered By : ', rider.name)
 
     confirmAlert({
       title: 'Commande livrée',
@@ -83,7 +81,6 @@ const OrdersPage = ({ rider, deliveries }) => {
 
   //In case the client canceled the order
   const refuseOrder = (order) => {
-    console.log('Refusing the Order : ', order.id)
     confirmAlert({
       title: 'Commande refusée',
       message: `Êtes-vous sûr que cette commande est refusée par ${order.name} ?`,
@@ -92,7 +89,6 @@ const OrdersPage = ({ rider, deliveries }) => {
           label: 'Oui',
           onClick: async () => {
             //Delete the order from the database
-            console.log('Deleting The Order : ', order.id)
             await fetch('/api/orders', {
               method: 'DELETE',
               body: JSON.stringify({

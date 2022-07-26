@@ -32,7 +32,6 @@ async function addClient(req, res) {
   try {
     //Getting the body fields
     const { date, username, email, password } = JSON.parse(req.body)
-console.log(date, username, email, password)
     // connect to the database
     let { db, client } = await connectToDatabase()
 
@@ -49,10 +48,6 @@ console.log(date, username, email, password)
       .toArray()
 
     if (checkExistingMail1?.length > 0 || checkExistingMail2?.length > 0) {
-      console.log(
-        'Email already exists : ',
-        checkExistingMail1[0]?.email || checkExistingMail2[0]?.email
-      )
       res.status(422).send({
         message: "E-mail de l'utilisateur existe déjà",
         success: false,
@@ -77,10 +72,6 @@ console.log(date, username, email, password)
       checkExistingUsername1?.length > 0 ||
       checkExistingUsername2?.length > 0
     ) {
-      console.log(
-        'Username already exists : ',
-        checkExistingUsername1[0]?.username || checkExistingUsername2[0]?.username
-      )
       res.status(422).send({
         message: "Username de l'utilisateur existe déjà",
         success: false,
@@ -116,7 +107,6 @@ console.log(date, username, email, password)
       image: '',
     })
 
-    console.log(username, ' added successfully !!')
     // return a message
     return res.status(200).send({
       message: 'Client added successfully',
@@ -124,7 +114,7 @@ console.log(date, username, email, password)
     })
   } catch (error) {
     // return an error
-    console.log('ERORRRRRRRRRRRRRRRRRRR ! ', error)
+
     return res.json({
       message: new Error(error).message,
       success: false,

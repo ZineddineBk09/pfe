@@ -1,53 +1,12 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 const Footer = dynamic(() => import('../components/Footer'))
 const Header2 = dynamic(() => import('../components/Header2'))
 import { useRouter } from 'next/router'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import dynamic from 'next/dynamic'
-import axios from 'axios'
 
 const PolitiqueConf = () => {
   const router = useRouter()
-
-  //fetching products from mongodb Data API
-  useEffect(() => {
-    const fetchData = async () => {
-      var data = JSON.stringify({
-        collection: 'products',
-        database: 'pfe',
-        dataSource: 'Cluster0',
-        projection: {
-          _id: 1,
-        },
-      })
-      var config = {
-        method: 'post',
-        url: 'https://data.mongodb-api.com/app/data-awinh/endpoint/data/v1/action/findOne',
-        headers: {
-          'Content-Type': 'application/json',
-          //'Access-Control-Request-Headers': '*',
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Headers': 'Authorization',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE,OPTIONS',
-          'api-key':
-            '7WzEwZqPNzt5b8jaZtKYOhveqhrfmhfmel30CEebV6NQUIhaKiIWrJ9bsYqoSSGX',
-        },
-        data: data,
-      }
-
-      axios(config)
-        .then(function (response) {
-          console.log(
-            '_______________________________My product : ',
-            JSON.stringify(response.data)
-          )
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
-    }
-    fetchData()
-  }, [])
 
   return (
     <div className='flex flex-col overflow-x-hidden bg-gray-100'>

@@ -24,7 +24,6 @@ const OrdersPage = ({ orders }) => {
     setMyOrders(ordersClone)
   }, [orders])
 
-  console.log('My orders : ', orders)
 
   const handleClick = (index) => {
     //hide other products list and display the current one

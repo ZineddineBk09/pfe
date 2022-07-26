@@ -10,7 +10,6 @@ export default async function handler(req, res) {
 export async function activateRider(req, res) {
   const riderId = req.query.riderId
   console.log('_____________________________')
-  console.log('riderId : ', riderId)
   if (!riderId) {
     return res.status(401).json({ message: 'Cannot Validate a Rider!' })
   } else {
@@ -19,13 +18,11 @@ export async function activateRider(req, res) {
     const pendingRider = await db
       .collection('pendingRiders')
       .findOne({ id: riderId })
-    console.log('pendingRider : ', pendingRider)
 
     if (!pendingRider) {
       return res.status(401).json({ message: 'Cannot Validate a Rider! 1' })
     }
     const activeRider = await db.collection('riders').insertOne(pendingRider)
-    console.log('activeRider : ', activeRider)
 
     if (!activeRider) {
       return res.status(401).json({ message: 'Cannot Validate a Rider! 2' })

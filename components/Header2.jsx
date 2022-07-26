@@ -54,7 +54,6 @@ function Header({ hideSearch, hideBasket, hideOptions }) {
           }),
         })
         await response.json().then((data) => {
-          console.log('SEARCHED PRODUCTS  : ', data)
           setFilteredProducts(data)
           dispatch(filterProducts(data))
         })
@@ -88,7 +87,6 @@ function Header({ hideSearch, hideBasket, hideOptions }) {
 
   const handleChange = async (e) => {
     setSearchTerm(e.target.value.toLowerCase())
-    console.log('CHANGEEE !!', searchTerm)
     searchTerm?.length >= 2 ? await fetchSuggestions() : setSuggestions([])
   }
 
