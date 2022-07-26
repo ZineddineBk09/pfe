@@ -33,7 +33,7 @@ const Rider = () => {
           const response2 = await fetch(`/api/orders/ordersByRegion`, {
             method: 'POST',
             body: JSON.stringify({
-              region: data?.region,
+              region: data?.region?.name,
             }),
           })
           await response2.json().then((data) => {
