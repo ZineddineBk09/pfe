@@ -92,7 +92,7 @@ console.log(date, username, email, password)
     const hashedPass = await hashPassword(password)
     const id = v4().toString()
     //send confirmation email
-    await sendConfirmationEmail({
+    await sendClientConfirmationEmail({
       toUser: {
         email,
         username,
