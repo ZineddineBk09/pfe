@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {
   ADD_TO_BASKET,
   CLEAR_BASKET,
@@ -22,11 +23,19 @@ export const initialState = {
   filteredProducts: [],
   client: {},
   rider: {},
+=======
+import { ADD_TO_BASKET, REMOVE_FROM_BASKET } from './basketActions'
+
+//Basket empty
+export const initialState = {
+  basket: [],
+>>>>>>> 2911c8aa502f63b6ee2cfeb4f637bb87527b391d
 }
 
 //Selector
 //0 is initial value of amount
 export const getBasketTotal = (basket) =>
+<<<<<<< HEAD
   //counting the total of basket
   basket?.reduce((amount, item) =>
     //check if the products have discount
@@ -73,6 +82,21 @@ const reducer = (state = initialState, action) => {
       removeCookie('basket')
       setCookie('basket', [...state.basket, action.payload])
 
+=======
+  basket?.reduce(
+    (amount, item) => parseInt(item.price?.split(' ')[0]) + amount,
+    0
+  )
+
+//The reducer is always listening and when we dispatch an action t's gonna get manipulated by the reducer and do some actions
+const reducer = (state = sessionStorage.getItem('basket'), action) => {
+  console.log('Reducer Is WOrking : ', action.type)
+  switch (action.type) {
+    case ADD_TO_BASKET:
+      console.log('ADD_TO_BASKET')
+      sessionStorage.removeItem('basket')
+      sessionStorage.setItem('basket', JSON.stringify([...state.basket, action.payload]))
+>>>>>>> 2911c8aa502f63b6ee2cfeb4f637bb87527b391d
       return { ...state, basket: [...state.basket, action.payload] }
 
     case REMOVE_FROM_BASKET:
@@ -82,6 +106,7 @@ const reducer = (state = initialState, action) => {
         (basketItem) => basketItem.id === action.id
       )
 
+<<<<<<< HEAD
       let newBasket1 = [...state.basket]
       if (index >= 0) {
         //we found it, and remove it
@@ -154,6 +179,21 @@ const reducer = (state = initialState, action) => {
       removeCookie('riderSession')
       return { ...state, rider: {} }
 
+=======
+      let newBasket = [...state.basket]
+      if (index >= 0) {
+        //we found it, and remove it
+        sessionStorage.removeItem('basket')
+        sessionStorage.setItem('basket', newBasket)
+
+        newBasket.splice(index, 1)
+      } else {
+        console.warn(
+          `Can't remove the product (id: ${action.id}) as it's not in your basket.`
+        )
+      }
+      return { ...state, basket: newBasket }
+>>>>>>> 2911c8aa502f63b6ee2cfeb4f637bb87527b391d
     default:
       return state
   }

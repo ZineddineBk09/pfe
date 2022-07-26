@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+<<<<<<< HEAD
 html,
 body {
   padding: 0;
@@ -35,3 +36,5 @@ a {
   border-radius: 100vh;
   border: 3px solid #edf2f7;
 }
+=======
+>>>>>>> 2911c8aa502f63b6ee2cfeb4f637bb87527b391d

@@ -4,6 +4,7 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+<<<<<<< HEAD
     extend: {
       backgroundImage: (theme) => ({
         'register-background':
@@ -21,4 +22,9 @@ module.exports = {
     },
     plugins: [],
   },
+=======
+    extend: {},
+  },
+  plugins: [],
+>>>>>>> 2911c8aa502f63b6ee2cfeb4f637bb87527b391d
 }
