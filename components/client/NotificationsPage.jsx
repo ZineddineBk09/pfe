@@ -29,7 +29,6 @@ const NotificationsPage = ({ notifications }) => {
       updatedNotification,
       ...myNotifications.slice(index + 1),
     ])
-    
   }
 
   const timeDiff = (date) => {
@@ -56,7 +55,7 @@ const NotificationsPage = ({ notifications }) => {
     if (days) return 'il ya ' + days + ' jours'
     if (hours) return 'il ya ' + hours + ' heures'
     if (minutes) return 'il ya ' + minutes + ' minutes'
-    return days + '-' + hours + '-' + minutes 
+    return ''
   }
 
   return (
