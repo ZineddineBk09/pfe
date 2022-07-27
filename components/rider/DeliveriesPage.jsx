@@ -35,7 +35,6 @@ const OrdersPage = ({ rider, deliveries }) => {
 
   //In case the client accepted the order
   const updateOrder = (order) => {
-
     confirmAlert({
       title: 'Commande livrée',
       message: `Êtes-vous sûr que cette commande est livrée a ${order.name} ?`,
@@ -51,7 +50,7 @@ const OrdersPage = ({ rider, deliveries }) => {
                 id: order.id,
                 clientId: order.clientId,
                 riderId: rider?.id,
-                riderName: rider?.name,
+                riderName: rider?.username,
                 orderState: 3,
               }),
             })

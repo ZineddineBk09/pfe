@@ -47,7 +47,7 @@ const OrdersPage = ({ rider, orders }) => {
                 id: order.id,
                 clientId: order.clientId,
                 riderId: rider.id,
-                riderName: rider.name,
+                riderName: rider.username,
                 orderState: 2,
                 products: order.products,
               }),
